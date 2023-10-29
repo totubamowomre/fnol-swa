@@ -1,0 +1,29 @@
+.form-section {
+    margin: 16px 16px;
+}
+
+.mat-card-title.form-section-title {
+    margin-bottom: 16px;
+}
+
+.mat-card-content {
+    max-width: 500px;
+}
+
+.mat-form-field.full-width {
+    width: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+}
+
+.button-container > button {
+    color: #fff;
+}
+
+.hidden {
+    display: none;
+}

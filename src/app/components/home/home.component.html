@@ -1,0 +1,50 @@
+<form class="form">
+    <mat-card class="form-section">
+        <mat-card-title class="form-section-title">Reporter</mat-card-title>
+        <mat-card-content>
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Role in relation to loss</mat-label>
+                <mat-select>
+                    <mat-option value="Agent">Agent</mat-option>
+                    <mat-option value="Insured">Insured</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Title</mat-label>
+                <mat-select>
+                    <mat-option value="Mr">Mr</mat-option>
+                    <mat-option value="Miss">Miss</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="form-section">
+        <mat-card-title class="form-section-title">Policy Information</mat-card-title>
+        <mat-card-content>
+            <p>Form content here</p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="form-section">
+        <mat-card-title class="form-section-title">Loss Information</mat-card-title>
+        <mat-card-content>
+            <p>Form content here</p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="form-section">
+        <mat-card-title class="form-section-title">Claimant Information</mat-card-title>
+        <mat-card-content>
+            <p>Form content here</p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="form-section">
+        <mat-card-title class="form-section-title">Attach File</mat-card-title>
+        <mat-card-content>
+            <div class="button-container">
+                <button type="button" (click)="fileInput.click()" mat-fab color="primary" aria-label="Attach file">
+                    <mat-icon color="white">attach_file</mat-icon>
+                </button>
+            </div>
+            <input type="file" title="attach" class="hidden" #fileInput (change)="onFileSelected($event)">
+        </mat-card-content>
+    </mat-card>
+</form>
