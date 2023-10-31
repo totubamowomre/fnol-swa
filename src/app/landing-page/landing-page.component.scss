@@ -1,0 +1,23 @@
+mat-card {
+  margin: auto 40px 10px;
+}
+
+mat-card-title {
+  margin-bottom: 10px;
+}
+
+.mat-card-content {
+  max-width: 500px;
+}
+
+.button-container {
+  margin: 0 20px;
+}
+
+mat-toolbar {
+  margin-bottom: 10px;
+}
+
+.button-container > button {
+  color: #fff;
+}

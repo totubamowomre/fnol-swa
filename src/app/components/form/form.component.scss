@@ -1,13 +1,14 @@
-.form-section {
-    margin: 16px 16px;
+mat-card {
+    margin: auto 40px 10px;
+    padding: 20px;
 }
 
-.mat-card-title.form-section-title {
-    margin-bottom: 16px;
+.mat-card-title {
+    margin-bottom: 10px;
 }
 
 .mat-card-content {
-    max-width: 500px;
+    max-width: 300px;
 }
 
 .mat-form-field.full-width {
@@ -15,12 +16,14 @@
 }
 
 .button-container {
-    display: flex;
-    justify-content: center;
-    width: 120px;
+    margin: 0 20px;
 }
 
-.button-container > button {
+mat-toolbar {
+    margin-bottom: 10px;
+}
+
+.button-container>button {
     color: #fff;
 }
 

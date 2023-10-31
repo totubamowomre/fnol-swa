@@ -10,15 +10,23 @@ import { MatModule } from "./material.module";
 import { NgbConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from "./components/footer/footer.component";
 import { ApiService } from "src/api/api.service";
+import { RoutingModule } from "./routing.module";
+import { LandingPageComponent } from "./landing-page/landing-page.component";
+import { FormPageComponent } from "./form-page/form-page.component";
+import { ConfirmationPageComponent } from "./confirmation-page/confirmation-page.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    FormComponent
+    FormComponent,
+    LandingPageComponent,
+    FormPageComponent,
+    ConfirmationPageComponent
   ],
   imports: [
+    RoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

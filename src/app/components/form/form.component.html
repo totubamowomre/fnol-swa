@@ -1,5 +1,5 @@
-<form class="form">
-    <mat-card class="form-section">
+<form class="form" (submit)="onSubmit($event)">
+    <mat-card>
         <mat-card-title class="form-section-title">Reporter</mat-card-title>
         <mat-card-content>
             <mat-form-field class="full-width" appearance="fill">
@@ -18,33 +18,40 @@
             </mat-form-field>
         </mat-card-content>
     </mat-card>
-    <mat-card class="form-section">
+    <mat-card>
         <mat-card-title class="form-section-title">Policy Information</mat-card-title>
         <mat-card-content>
             <p>Form content here</p>
         </mat-card-content>
     </mat-card>
-    <mat-card class="form-section">
+    <mat-card>
         <mat-card-title class="form-section-title">Loss Information</mat-card-title>
         <mat-card-content>
             <p>Form content here</p>
         </mat-card-content>
     </mat-card>
-    <mat-card class="form-section">
+    <mat-card>
         <mat-card-title class="form-section-title">Claimant Information</mat-card-title>
         <mat-card-content>
             <p>Form content here</p>
         </mat-card-content>
     </mat-card>
-    <mat-card class="form-section">
+    <mat-card>
         <mat-card-title class="form-section-title">Attach File</mat-card-title>
         <mat-card-content>
             <div class="button-container">
-                <button type="button" (click)="fileInput.click()" mat-fab color="primary" aria-label="Attach file">
-                    <mat-icon color="white">attach_file</mat-icon>
+                <button type="button" (click)="fileInput.click()" mat-mini-fab color="primary" aria-label="Attach file">
+                    <mat-icon>attach_file</mat-icon>
                 </button>
             </div>
             <input type="file" title="attach" class="hidden" #fileInput (change)="onFileSelected($event)">
         </mat-card-content>
     </mat-card>
+    <mat-toolbar class="mat-card-actions-align-end">
+        <div class="button-container">
+            <button type="submit" mat-raised-button color="primary" aria-label="Submit FNOL">
+                Submit FNOL
+            </button>
+        </div>
+    </mat-toolbar>
 </form>

@@ -1,0 +1,17 @@
+mat-card {
+  margin: auto 40px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; // You can adjust this value based on your needs
+  text-align: center;
+}
+
+mat-card-title {
+  margin-bottom: 10px;
+  mat-icon {
+    color: green;
+    margin-right: 20px;
+  }
+}
