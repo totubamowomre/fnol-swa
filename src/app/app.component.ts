@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private http: HttpClient) { }
 
   async ngOnInit() {
-    const response = fetch('/api/status')
+    fetch('/api/status')
       .then((response: any) => response.json())
       .then((status: any) => {
         this.name = status.name;

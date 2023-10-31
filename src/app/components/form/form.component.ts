@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss'],
 })
-export class HomeComponent {
+export class FormComponent {
   constructor() { }
 
   ngOnInit() { }
