@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from '../session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
+  constructor(private sessionService: SessionService, private router: Router) { }
 
-  constructor() { }
+  ngOnInit(): void { }
 
-  ngOnInit(): void {
+  async onStartButtonClick(): Promise<any> {
+    try {
+      const sessionKey: any = await this.sessionService.startSession();
+      // Navigate to the form page with fnolData
+      this.router.navigate(['/form'], { state: { sessionKey: sessionKey } });
+    } catch (error) {
+      console.error(error);
+    }
   }
-
 }

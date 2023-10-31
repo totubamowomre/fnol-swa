@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { ApiService } from 'src/api/api.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,14 +8,22 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
   name = '...';
+  version = '...';
 
-  constructor(private http: HttpClient) { }
+  constructor(private apiService: ApiService) { }
 
   async ngOnInit() {
-    fetch('/api/status')
-      .then((response: any) => response.json())
-      .then((status: any) => {
-        this.name = status.name;
-      });
+    this.apiService.getStatus().subscribe({
+      next: (response) => {
+        this.name = response.name
+        this.version = response.version;
+      },
+      error: (error) => {
+        console.error('Error: ' + JSON.stringify(error.error));
+      },
+      complete: () => {
+        console.log('Connected to backend');
+      }
+    });
   }
 }
