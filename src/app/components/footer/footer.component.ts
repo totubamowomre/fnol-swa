@@ -15,8 +15,8 @@ export class FooterComponent {
   async ngOnInit() {
     this.apiService.getStatus().subscribe({
       next: (response) => {
-        this.name = response.name
-        this.version = response.version;
+        this.name = response.body.name
+        this.version = response.body.version;
       },
       error: (error) => {
         console.error('Error: ' + JSON.stringify(error.error));

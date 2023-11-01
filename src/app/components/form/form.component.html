@@ -1,20 +1,28 @@
-<form class="form" (submit)="onSubmit($event)">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-card>
         <mat-card-title class="form-section-title">Reporter</mat-card-title>
-        <mat-card-content>
+        <mat-card-content formGroupName="reporter">
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>Role in relation to loss</mat-label>
-                <mat-select>
+                <mat-select formControlName="relationToInsured">
                     <mat-option value="Agent">Agent</mat-option>
                     <mat-option value="Insured">Insured</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>Title</mat-label>
-                <mat-select>
+                <mat-select formControlName="title">
                     <mat-option value="Mr">Mr</mat-option>
                     <mat-option value="Miss">Miss</mat-option>
                 </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" />
             </mat-form-field>
         </mat-card-content>
     </mat-card>

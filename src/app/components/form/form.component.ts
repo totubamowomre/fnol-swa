@@ -1,18 +1,34 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-export class FormComponent {
-  constructor(private router: Router) { }
+export class FormComponent implements OnInit {
+  form!: FormGroup;
 
-  ngOnInit() { }
+  @Output() emmitter: EventEmitter<any> = new EventEmitter();
 
-  onSubmit(event: any) {
-    event.preventDefault();
-    console.log(event);
+  constructor(private formBuilder: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      reporter: this.formBuilder.group({
+        relationToInsured: ['', Validators.required],
+        title: ['', Validators.required],
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required]
+      })
+    });
+  }
+
+  onSubmit() {
+    if(this.form.valid) {
+      this.emmitter.emit(this.form.value);
+      console.log('Submitted with value: ' + JSON.stringify(this.form.value));
+    }
   }
 
   onFileSelected(event: any) {

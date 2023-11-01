@@ -1,7 +1,7 @@
 // api.service.ts
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -13,15 +13,15 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getStatus(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/api/status`);
+  getStatus(): Observable<HttpResponse<any>> {
+    return this.http.get<any>(`${this.apiUrl}/api/status`, { observe: 'response' });
   }
 
-  createFnol(data: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/api/fnol`, data);
+  createFnol(data: any): Observable<HttpResponse<any>> {
+    return this.http.post<any>(`${this.apiUrl}/api/fnol`, data, { observe: 'response' });
   }
 
-  updateFnol(id: string, data: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/api/fnol/${id}`, data);
+  updateFnol(id: string, data: any): Observable<HttpResponse<any>> {
+    return this.http.put<any>(`${this.apiUrl}/api/fnol/${id}`, data, { observe: 'response' });
   }
 }

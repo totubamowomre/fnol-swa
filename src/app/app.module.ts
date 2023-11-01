@@ -14,6 +14,7 @@ import { RoutingModule } from "./routing.module";
 import { LandingPageComponent } from "./landing-page/landing-page.component";
 import { FormPageComponent } from "./form-page/form-page.component";
 import { ConfirmationPageComponent } from "./confirmation-page/confirmation-page.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ConfirmationPageComponent } from "./confirmation-page/confirmation-page
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     MatModule,
     NgbModule
   ],

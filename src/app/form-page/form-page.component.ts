@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../session.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/api/api.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-page',
@@ -9,47 +10,53 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./form-page.component.scss']
 })
 export class FormPageComponent implements OnInit {
-  private sessionKey: any;
-  private fnolDatakey = environment.fnolDatakey;
+  private formValue!: any;
+  private fnolId!: string;
 
   constructor(
+    private apiService: ApiService,
     private sessionService: SessionService,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) {
     this.sessionService.currentSessionState.subscribe(isActive => {
       if (!isActive) {
-        this.clearFnolData();
-        // Clear the form & redirect to home page
         this.router.navigate(['']);
       }
     });
   }
 
-  onCompleted() {
-    this.router.navigate(['/confirmation']);
+  handleFormSubmit(newFormValue: any) {
+    if (!this.fnolId) {
+      console.error("Fnol ID is not available.");
+      return;
+    }
+
+    newFormValue.meta = this.formValue.meta;
+
+    this.apiService.updateFnol(this.fnolId, newFormValue).subscribe({
+      next: () => {
+        this.router.navigate(['/confirmation']);
+      },
+      error: (error: any) => {
+        console.error("Error updating Fnol:", error);
+      }
+    });
   }
 
   ngOnInit(): void {
-    this.sessionKey = history.state.sessionKey;
-  }
+    this.formValue = { meta: { sessionKey: history.state.sessionKey } };
 
-  // Save FNOL data to session storage
-  private saveFnolData(data: any): void {
-    sessionStorage.setItem(this.fnolDatakey, JSON.stringify(data));
-  }
-
-  // Get FNOL data from session storage
-  private getFnolData(): any {
-    const storedData = sessionStorage.getItem(this.fnolDatakey);
-    if (storedData) {
-      return JSON.parse(storedData);
-    }
-    return null;
-  }
-
-  // Clear FNOL data from session storage
-  private clearFnolData(): void {
-    sessionStorage.removeItem(this.fnolDatakey);
+    this.apiService.createFnol(this.formValue).subscribe({
+      next: (response: HttpResponse<any>) => {
+        const locationHeader = response.headers.get('Location');
+        if (locationHeader) {
+          this.fnolId = locationHeader.split('/').pop() || '';
+          console.log("Created new FNOL", this.fnolId);
+        }
+      },
+      error: (error: any) => {
+        console.error("Error creating Fnol:", error);
+      }
+    });
   }
 }
