@@ -15,6 +15,8 @@ import { LandingPageComponent } from "./landing-page/landing-page.component";
 import { FormPageComponent } from "./form-page/form-page.component";
 import { ConfirmationPageComponent } from "./confirmation-page/confirmation-page.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { SessionReminderDialogComponent } from './components/session-reminder-dialog/session-reminder-dialog.component';
+import { SessionExpiredDialogComponent } from './components/session-expired-dialog/session-expired-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ReactiveFormsModule } from "@angular/forms";
     FormComponent,
     LandingPageComponent,
     FormPageComponent,
-    ConfirmationPageComponent
+    ConfirmationPageComponent,
+    SessionReminderDialogComponent,
+    SessionExpiredDialogComponent
   ],
   imports: [
     RoutingModule,
@@ -34,6 +38,10 @@ import { ReactiveFormsModule } from "@angular/forms";
     ReactiveFormsModule,
     MatModule,
     NgbModule
+  ],
+  entryComponents: [
+    SessionReminderDialogComponent,
+    SessionExpiredDialogComponent
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

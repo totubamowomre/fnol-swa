@@ -1,5 +1,8 @@
 export const environment = {
   production: true,
-  sessionStoragePrefix: 'clminsfnoldata',
+  session: {
+    storagePrefix: 'clminsfnoldata',
+    timeOut: 10
+  },
   apiUrl: ''
 };

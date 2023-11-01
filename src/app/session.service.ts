@@ -9,8 +9,12 @@ import { environment } from 'src/environments/environment';
 })
 export class SessionService implements OnDestroy {
   private sessionState = new BehaviorSubject<boolean>(false);
+  private sessionReminder = new BehaviorSubject<boolean>(false);
   currentSessionState = this.sessionState.asObservable();
+  currentSessionReminder = this.sessionReminder.asObservable();
+
   private sessionSubscription?: Subscription;
+  private sessionReminderSubscription?: Subscription;
 
   constructor(private apiService: ApiService) {
     // Restore session from sessionStorage
@@ -20,7 +24,7 @@ export class SessionService implements OnDestroy {
   }
 
   private static prefixKey(key: string): string {
-    const sessionStoragePrefix = environment.sessionStoragePrefix;
+    const sessionStoragePrefix = environment.session.storagePrefix;
     return `${sessionStoragePrefix}-${key}`;
   }
 
@@ -53,7 +57,7 @@ export class SessionService implements OnDestroy {
   public static clearAll(): void {
     // This clears only the prefixed items in the session storage
     Object.keys(sessionStorage)
-      .filter(key => key.startsWith(environment.sessionStoragePrefix))
+      .filter(key => key.startsWith(environment.session.storagePrefix))
       .forEach(key => sessionStorage.removeItem(key));
   }
 
@@ -64,8 +68,14 @@ export class SessionService implements OnDestroy {
         resolve(SessionService.getSessionKey());
       } else {
         this.setSessionState(true);
-        const thirtyMinutes = 30 * 60 * 1000;
-        this.sessionSubscription = timer(thirtyMinutes).subscribe(() => {
+        const timeOutMinutes = environment.session.timeOut * 60 * 1000;
+        const reminderTimeOut = timeOutMinutes * 0.7;
+
+        this.sessionReminderSubscription = timer(reminderTimeOut).subscribe(() => {
+          this.sessionReminder.next(true);
+        });
+
+        this.sessionSubscription = timer(timeOutMinutes).subscribe(() => {
           this.setSessionState(false);
           SessionService.clearAll();
           console.log('Session ended');
@@ -75,19 +85,17 @@ export class SessionService implements OnDestroy {
         this.apiService.createFnol(sessionData).subscribe({
           next: (response: HttpResponse<any>) => {
             const locationHeader = response.headers.get('Location');
-            if (locationHeader) {
-              const sessionKey = locationHeader.split('/').pop() || '';
-              SessionService.setSessionKey(sessionKey)
-              SessionService.setSessionData(sessionData);
-              console.log('Session started: ', sessionKey);
-              resolve(sessionKey);
-            }
+            const sessionKey = locationHeader?.split('/').pop() || '';
+            SessionService.setSessionKey(sessionKey)
+            SessionService.setSessionData(sessionData);
+            console.log('Session started');
+            resolve(sessionKey);
           },
           error: (error: any) => {
             console.error('Error creating Fnol: ', error);
-            reject(error) 
+            reject(error)
           }
-        }); 
+        });
       }
     });
   }
@@ -98,5 +106,6 @@ export class SessionService implements OnDestroy {
 
   ngOnDestroy(): void {
     this.sessionSubscription?.unsubscribe();
+    this.sessionReminderSubscription?.unsubscribe();
   }
 }
