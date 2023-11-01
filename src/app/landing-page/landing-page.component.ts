@@ -14,11 +14,11 @@ export class LandingPageComponent implements OnInit {
 
   async onStartButtonClick(): Promise<any> {
     try {
-      const sessionKey: any = await this.sessionService.startSession();
+      const sessionKey: string = await this.sessionService.startSession();
       // Navigate to the form page with fnolData
       this.router.navigate(['/form'], { state: { sessionKey: sessionKey } });
     } catch (error) {
-      console.error(error);
+      throw error;
     }
   }
 }

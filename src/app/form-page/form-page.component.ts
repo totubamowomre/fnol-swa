@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../session.service';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/api/api.service';
-import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-page',
@@ -10,8 +9,8 @@ import { HttpResponse } from '@angular/common/http';
   styleUrls: ['./form-page.component.scss']
 })
 export class FormPageComponent implements OnInit {
-  private formValue!: any;
-  private fnolId!: string;
+  private fnolId!: string | null;
+  data!: any;
 
   constructor(
     private apiService: ApiService,
@@ -25,38 +24,31 @@ export class FormPageComponent implements OnInit {
     });
   }
 
-  handleFormSubmit(newFormValue: any) {
+  handleFormSubmit(data: any) {
     if (!this.fnolId) {
-      console.error("Fnol ID is not available.");
-      return;
+      throw new Error('Invalid fnolId');
     }
 
-    newFormValue.meta = this.formValue.meta;
-
-    this.apiService.updateFnol(this.fnolId, newFormValue).subscribe({
+    this.apiService.updateFnol(this.fnolId, data).subscribe({
       next: () => {
-        this.router.navigate(['/confirmation']);
+        this.data = data;
+        SessionService.setSessionData(data);
+        this.router.navigate(['/confirmation'], { state: { fnolId: this.fnolId } });
       },
       error: (error: any) => {
         console.error("Error updating Fnol:", error);
+        throw error;
       }
     });
   }
 
   ngOnInit(): void {
-    this.formValue = { meta: { sessionKey: history.state.sessionKey } };
-
-    this.apiService.createFnol(this.formValue).subscribe({
-      next: (response: HttpResponse<any>) => {
-        const locationHeader = response.headers.get('Location');
-        if (locationHeader) {
-          this.fnolId = locationHeader.split('/').pop() || '';
-          console.log("Created new FNOL", this.fnolId);
-        }
-      },
-      error: (error: any) => {
-        console.error("Error creating Fnol:", error);
-      }
-    });
+    // Fetch session key from sessionStorage if available
+    if (SessionService.isSessionActive()) {
+      this.fnolId = SessionService.getSessionKey();
+      this.data = SessionService.getSessionData();
+    } else {
+      this.fnolId = history.state.sessionKey;
+    }
   }
 }

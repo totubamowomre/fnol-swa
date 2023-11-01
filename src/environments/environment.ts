@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  fnolDatakey: 'clminsfnoldata-dev',
+  sessionStoragePrefix: 'clminsfnoldata-dev',
   apiUrl: 'https://fnol-function-app.azurewebsites.net'
 };
 

@@ -7,13 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./confirmation-page.component.scss']
 })
 export class ConfirmationPageComponent implements OnInit {
+  fnolId!: string | null;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-  }
-
-  startNewFnol(): void {
-    // clear form / session
-    this.router.navigate(['/form']);
+    this.fnolId = history.state.fnolId;
+    if (!this.fnolId) {
+      this.router.navigate(['']);
+    }
   }
 }
