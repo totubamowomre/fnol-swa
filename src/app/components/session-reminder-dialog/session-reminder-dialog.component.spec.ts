@@ -8,9 +8,8 @@ describe('SessionReminderDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SessionReminderDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [SessionReminderDialogComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SessionReminderDialogComponent);
     component = fixture.componentInstance;

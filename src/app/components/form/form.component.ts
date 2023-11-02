@@ -12,7 +12,7 @@ export class FormComponent implements OnInit {
 
   @Output() emmitter: EventEmitter<any> = new EventEmitter();
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -20,13 +20,13 @@ export class FormComponent implements OnInit {
         relationToInsured: ['', Validators.required],
         title: ['', Validators.required],
         firstName: ['', Validators.required],
-        lastName: ['', Validators.required]
-      })
+        lastName: ['', Validators.required],
+      }),
     });
   }
 
   onSubmit() {
-    if(this.form.valid) {
+    if (this.form.valid) {
       this.emmitter.emit(this.form.value);
       console.log('Submitted with value: ' + JSON.stringify(this.form.value));
     }

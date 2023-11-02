@@ -7,11 +7,11 @@ import { ConfirmationPageComponent } from './confirmation-page/confirmation-page
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'form', component: FormPageComponent },
-  { path: 'confirmation', component: ConfirmationPageComponent }
+  { path: 'confirmation', component: ConfirmationPageComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class RoutingModule { }
+export class RoutingModule {}

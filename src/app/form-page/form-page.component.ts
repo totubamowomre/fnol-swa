@@ -5,14 +5,15 @@ import { ApiService } from 'src/api/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SessionExpiredDialogComponent } from '../components/session-expired-dialog/session-expired-dialog.component';
 import { SessionReminderDialogComponent } from '../components/session-reminder-dialog/session-reminder-dialog.component';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-page',
   templateUrl: './form-page.component.html',
-  styleUrls: ['./form-page.component.scss']
+  styleUrls: ['./form-page.component.scss'],
 })
 export class FormPageComponent implements OnInit {
-  private fnolId!: string | null;
+  private sessionKey!: string | null;
   data!: any;
 
   constructor(
@@ -35,44 +36,46 @@ export class FormPageComponent implements OnInit {
   }
 
   openSessionReminderDialog(): void {
-    this.dialog.open(SessionReminderDialogComponent, {
-    });
+    this.dialog.open(SessionReminderDialogComponent, {});
   }
 
   openSessionExpiredDialog(): void {
-    this.dialog.open(SessionExpiredDialogComponent, {
-    }).afterClosed().subscribe(_result => {
-      if (this.router.url === '/form') {
-        this.router.navigate(['']);
-      }
-    });
+    this.dialog
+      .open(SessionExpiredDialogComponent, {})
+      .afterClosed()
+      .subscribe(_result => {
+        if (this.router.url === '/form') {
+          this.router.navigate(['']);
+        }
+      });
   }
 
   handleFormSubmit(data: any) {
-    if (!this.fnolId) {
+    if (!this.sessionKey) {
       throw new Error('Invalid FNOL ID');
     }
+    this.data = data;
+    SessionService.setSessionData(data);
+    let fnolId = this.sessionKey;
 
-    this.apiService.updateFnol(this.fnolId, data).subscribe({
+    this.apiService.updateFnol(fnolId, data).subscribe({
       next: () => {
-        this.data = data;
-        SessionService.setSessionData(data);
-        this.router.navigate(['/confirmation'], { state: { fnolId: this.fnolId } });
+        this.router.navigate(['/confirmation'], { state: { fnolId: fnolId } });
       },
       error: (error: any) => {
-        console.error("Error updating Fnol:", error);
+        console.error('Error updating Fnol:', error);
         throw error;
-      }
+      },
     });
   }
 
   ngOnInit(): void {
     // Fetch session key from sessionStorage if available
     if (SessionService.isSessionActive()) {
-      this.fnolId = SessionService.getSessionKey();
+      this.sessionKey = SessionService.getSessionKey();
       this.data = SessionService.getSessionData();
     } else {
-      this.fnolId = history.state.sessionKey;
+      this.sessionKey = history.state.sessionKey;
     }
   }
 }

@@ -79,7 +79,7 @@ import { MatOptionModule } from '@angular/material/core';
     MatTooltipModule,
     MatTreeModule,
     MatNativeDateModule,
-    MatOptionModule
-  ]
+    MatOptionModule,
+  ],
 })
-export class MatModule { }
+export class MatModule {}

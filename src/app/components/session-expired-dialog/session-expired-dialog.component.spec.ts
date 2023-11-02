@@ -8,9 +8,8 @@ describe('SessionExpiredDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SessionExpiredDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [SessionExpiredDialogComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SessionExpiredDialogComponent);
     component = fixture.componentInstance;

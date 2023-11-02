@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-session-reminder-dialog',
   templateUrl: './session-reminder-dialog.component.html',
-  styleUrls: ['./session-reminder-dialog.component.scss']
+  styleUrls: ['./session-reminder-dialog.component.scss'],
 })
-export class SessionReminderDialogComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class SessionReminderDialogComponent {
+  constructor() {}
 }

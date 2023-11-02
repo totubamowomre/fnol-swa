@@ -5,7 +5,7 @@ import { ApiService } from 'src/api/api.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SessionService implements OnDestroy {
   private sessionState = new BehaviorSubject<boolean>(false);
@@ -29,7 +29,10 @@ export class SessionService implements OnDestroy {
   }
 
   public static setSessionActive(isActive: boolean): void {
-    sessionStorage.setItem(this.prefixKey('sessionActive'), JSON.stringify(isActive));
+    sessionStorage.setItem(
+      this.prefixKey('sessionActive'),
+      JSON.stringify(isActive)
+    );
   }
 
   public static isSessionActive(): boolean {
@@ -71,9 +74,11 @@ export class SessionService implements OnDestroy {
         const timeOutMinutes = environment.session.timeOut * 60 * 1000;
         const reminderTimeOut = timeOutMinutes * 0.7;
 
-        this.sessionReminderSubscription = timer(reminderTimeOut).subscribe(() => {
-          this.sessionReminder.next(true);
-        });
+        this.sessionReminderSubscription = timer(reminderTimeOut).subscribe(
+          () => {
+            this.sessionReminder.next(true);
+          }
+        );
 
         this.sessionSubscription = timer(timeOutMinutes).subscribe(() => {
           this.setSessionState(false);
@@ -86,15 +91,15 @@ export class SessionService implements OnDestroy {
           next: (response: HttpResponse<any>) => {
             const locationHeader = response.headers.get('Location');
             const sessionKey = locationHeader?.split('/').pop() || '';
-            SessionService.setSessionKey(sessionKey)
+            SessionService.setSessionKey(sessionKey);
             SessionService.setSessionData(sessionData);
             console.log('Session started');
             resolve(sessionKey);
           },
           error: (error: any) => {
             console.error('Error creating Fnol: ', error);
-            reject(error)
-          }
+            reject(error);
+          },
         });
       }
     });

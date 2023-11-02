@@ -8,6 +8,9 @@
     "build:local": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.html\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"src/**/*.html\"",
     "e2e": "ng e2e",
     "swa:start": "swa start app",
     "swa:login": "swa deploy app",
@@ -34,6 +37,11 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.1.0",
+    "@angular-eslint/builder": "14.4.0",
+    "@angular-eslint/eslint-plugin": "14.4.0",
+    "@angular-eslint/eslint-plugin-template": "14.4.0",
+    "@angular-eslint/schematics": "14.4.0",
+    "@angular-eslint/template-parser": "14.4.0",
     "@angular/cli": "^14.1.0",
     "@angular/compiler-cli": "^14.1.0",
     "@angular/language-service": "^14.1.0",
@@ -42,7 +50,13 @@
     "@types/jasmine": "~4.0.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "5.43.0",
+    "@typescript-eslint/parser": "5.43.0",
     "codelyzer": "^6.0.0",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
     "jasmine-core": "~4.3.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.4.0",
@@ -50,9 +64,23 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^2.0.0",
+    "lint-staged": "^15.0.2",
+    "prettier": "^3.0.3",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.7.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,html}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

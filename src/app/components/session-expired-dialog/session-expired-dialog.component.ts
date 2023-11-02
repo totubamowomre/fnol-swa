@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-session-expired-dialog',
   templateUrl: './session-expired-dialog.component.html',
-  styleUrls: ['./session-expired-dialog.component.scss']
+  styleUrls: ['./session-expired-dialog.component.scss'],
 })
-export class SessionExpiredDialogComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class SessionExpiredDialogComponent {
+  constructor() {}
 }
