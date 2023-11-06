@@ -12,7 +12,7 @@ export class FormComponent implements OnInit {
 
   @Output() emmitter: EventEmitter<any> = new EventEmitter();
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -21,6 +21,8 @@ export class FormComponent implements OnInit {
         title: ['', Validators.required],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
+        email: ['', Validators.required],
+        phone: ['', Validators.required]
       }),
     });
   }

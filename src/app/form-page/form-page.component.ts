@@ -5,7 +5,6 @@ import { ApiService } from 'src/api/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SessionExpiredDialogComponent } from '../components/session-expired-dialog/session-expired-dialog.component';
 import { SessionReminderDialogComponent } from '../components/session-reminder-dialog/session-reminder-dialog.component';
-import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-page',
@@ -23,13 +22,13 @@ export class FormPageComponent implements OnInit {
     private dialog: MatDialog
   ) {
     this.sessionService.currentSessionReminder.subscribe(shouldRemind => {
-      if (shouldRemind && this.dialog.openDialogs.length === 0) {
+      if (shouldRemind && this.dialog.openDialogs.length === 0 && this.router.url === '/form') {
         this.openSessionReminderDialog();
       }
     });
 
     this.sessionService.currentSessionState.subscribe(isActive => {
-      if (!isActive && this.dialog.openDialogs.length === 0) {
+      if (!isActive && this.dialog.openDialogs.length === 0 && this.router.url === '/form') {
         this.openSessionExpiredDialog();
       }
     });
@@ -44,9 +43,7 @@ export class FormPageComponent implements OnInit {
       .open(SessionExpiredDialogComponent, {})
       .afterClosed()
       .subscribe(_result => {
-        if (this.router.url === '/form') {
-          this.router.navigate(['']);
-        }
+        this.router.navigate(['']);
       });
   }
 

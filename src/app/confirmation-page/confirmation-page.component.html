@@ -1,15 +1,19 @@
 <mat-card>
   <mat-card-title>
     <mat-icon>check_circle</mat-icon>
-    Your FNOL has been sent
+    Your FNOL has been sent.
   </mat-card-title>
   <mat-card-content>
     <p>
-      Your FNOL has been sent to the MRSI team.<br />
-      Reference <b>{{ fnolId }}</b
-      ><br />
-      -> Explanation of next steps, contact info for help or anything else we
-      can say here?
-    </p>
+      Your FNOL has been sent to the MRSI team - (Reference {{ fnolId }}).<br />
   </mat-card-content>
 </mat-card>
+
+<mat-toolbar class="mat-card-actions-align-end">
+  <div class="button-container">
+    <button type="button" mat-raised-button color="primary" aria-label="Create Additional FNOL"
+      (click)="onCreateAdditionalFnolButtonClick()">
+      Create Additional FNOL
+    </button>
+  </div>
+</mat-toolbar>

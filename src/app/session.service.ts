@@ -19,7 +19,7 @@ export class SessionService implements OnDestroy {
   constructor(private apiService: ApiService) {
     // Restore session from sessionStorage
     if (SessionService.isSessionActive()) {
-      this.sessionState.next(true);
+      this.setSessionState(true);
     }
   }
 
@@ -28,16 +28,8 @@ export class SessionService implements OnDestroy {
     return `${sessionStoragePrefix}-${key}`;
   }
 
-  public static setSessionActive(isActive: boolean): void {
-    sessionStorage.setItem(
-      this.prefixKey('sessionActive'),
-      JSON.stringify(isActive)
-    );
-  }
-
   public static isSessionActive(): boolean {
-    const active = sessionStorage.getItem(this.prefixKey('sessionActive'));
-    return active ? JSON.parse(active) : false;
+    return SessionService.getSessionKey() ? true : false;
   }
 
   public static setSessionKey(value: string): void {
@@ -62,6 +54,10 @@ export class SessionService implements OnDestroy {
     Object.keys(sessionStorage)
       .filter(key => key.startsWith(environment.session.storagePrefix))
       .forEach(key => sessionStorage.removeItem(key));
+  }
+
+  private setSessionState(isActive: boolean): void {
+    this.sessionState.next(isActive);
   }
 
   async startSession(): Promise<any> {
@@ -103,10 +99,6 @@ export class SessionService implements OnDestroy {
         });
       }
     });
-  }
-
-  private setSessionState(isActive: boolean): void {
-    this.sessionState.next(isActive);
   }
 
   ngOnDestroy(): void {

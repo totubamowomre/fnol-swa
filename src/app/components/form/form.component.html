@@ -3,7 +3,7 @@
     <mat-card-title class="form-section-title">Reporter</mat-card-title>
     <mat-card-content formGroupName="reporter">
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Role in relation to loss</mat-label>
+        <mat-label>Role in Relation to Loss</mat-label>
         <mat-select formControlName="relationToInsured">
           <mat-option value="Agent">Agent</mat-option>
           <mat-option value="Insured">Insured</mat-option>
@@ -24,12 +24,18 @@
         <mat-label>Last Name</mat-label>
         <input matInput formControlName="lastName" />
       </mat-form-field>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Phone</mat-label>
+        <input matInput type="tel" formControlName="phone" />
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
     </mat-card-content>
   </mat-card>
   <mat-card>
-    <mat-card-title class="form-section-title"
-      >Policy Information</mat-card-title
-    >
+    <mat-card-title class="form-section-title">Policy Information</mat-card-title>
     <mat-card-content>
       <p>Form content here</p>
     </mat-card-content>
@@ -41,9 +47,7 @@
     </mat-card-content>
   </mat-card>
   <mat-card>
-    <mat-card-title class="form-section-title"
-      >Claimant Information</mat-card-title
-    >
+    <mat-card-title class="form-section-title">Claimant Information</mat-card-title>
     <mat-card-content>
       <p>Form content here</p>
     </mat-card-content>
@@ -52,33 +56,16 @@
     <mat-card-title class="form-section-title">Attach File</mat-card-title>
     <mat-card-content>
       <div class="button-container">
-        <button
-          type="button"
-          (click)="fileInput.click()"
-          mat-mini-fab
-          color="primary"
-          aria-label="Attach file"
-        >
+        <button type="button" (click)="fileInput.click()" mat-mini-fab color="primary" aria-label="Attach file">
           <mat-icon>attach_file</mat-icon>
         </button>
       </div>
-      <input
-        type="file"
-        title="attach"
-        class="hidden"
-        #fileInput
-        (change)="onFileSelected($event)"
-      />
+      <input type="file" title="attach" class="hidden" #fileInput (change)="onFileSelected($event)" />
     </mat-card-content>
   </mat-card>
   <mat-toolbar class="mat-card-actions-align-end">
     <div class="button-container">
-      <button
-        type="submit"
-        mat-raised-button
-        color="primary"
-        aria-label="Submit FNOL"
-      >
+      <button type="submit" mat-raised-button color="primary" aria-label="Submit FNOL">
         Submit FNOL
       </button>
     </div>

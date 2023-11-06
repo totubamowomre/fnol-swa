@@ -1,0 +1,20 @@
+<mat-dialog-content>
+    <div mat-dialog-title>
+        <mat-icon aria-hidden="false" aria-label="Terms and Conditions">description</mat-icon>
+        <span>Terms and Conditions</span>
+    </div>
+    <div #termsText>
+        <p>By clicking on the "Accept" button, you are agreeing that you have read, understood, and agree to be legally
+            bound by this agreement. If you are entering into this agreement on behalf of a company or other legal
+            entity, your acceptance represents that you have the authority to bind such entity to this agreement, in
+            which case "you" or "your" shall refer to your entity. If you do not agree to all of the terms of this
+            agreement, or if you do not have the authority to bind your entity, do not click “Accept” to these terms and
+            you will not be granted access to use the platform.</p>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="printTerms(termsText)">Print</button>
+    <span class="flex-spacer"></span>
+    <button mat-raised-button color="primary" (click)="onAccept()">Accept</button>
+    <button mat-raised-button color="primary" (click)="onReject()">Reject</button>
+</mat-dialog-actions>

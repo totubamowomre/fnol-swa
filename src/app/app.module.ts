@@ -17,6 +17,7 @@ import { ConfirmationPageComponent } from './confirmation-page/confirmation-page
 import { ReactiveFormsModule } from '@angular/forms';
 import { SessionReminderDialogComponent } from './components/session-reminder-dialog/session-reminder-dialog.component';
 import { SessionExpiredDialogComponent } from './components/session-expired-dialog/session-expired-dialog.component';
+import { TermsDialogComponent } from './components/terms-dialog/terms-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SessionExpiredDialogComponent } from './components/session-expired-dial
     LandingPageComponent,
     FormPageComponent,
     ConfirmationPageComponent,
+    TermsDialogComponent,
     SessionReminderDialogComponent,
     SessionExpiredDialogComponent,
   ],

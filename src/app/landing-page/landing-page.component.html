@@ -2,22 +2,18 @@
   <mat-card-title>Steps</mat-card-title>
   <mat-card-content class="instructions">
     <ol>
+      <li>Accept Terms and Conditions.</li>
       <li>Click start, fill out the form to create an FNOL.</li>
       <li>Wait for an email confirmation about your FNOL submission.</li>
     </ol>
   </mat-card-content>
+  <p>Click <a href="#" (click)="openTermsDialog($event)">here</a> to Accept Terms and Conditions</p>
 </mat-card>
 
+
 <mat-toolbar class="mat-card-actions-align-end">
-  <div class="button-container">
-    <button
-      type="button"
-      mat-raised-button
-      color="primary"
-      aria-label="Start FNOL"
-      (click)="onStartButtonClick()"
-    >
-      Start
-    </button>
-  </div>
+  <button type="button" mat-raised-button color="primary" class="full-width-button" [disabled]="!isStartButtonEnabled"
+    aria-label="Start FNOL" (click)="onStartButtonClick()">
+    Start
+  </button>
 </mat-toolbar>
