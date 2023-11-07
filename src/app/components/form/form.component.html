@@ -52,21 +52,10 @@
       <p>Form content here</p>
     </mat-card-content>
   </mat-card>
-  <mat-card>
-    <mat-card-title class="form-section-title">Attach File</mat-card-title>
-    <mat-card-content>
-      <div class="button-container">
-        <button type="button" (click)="fileInput.click()" mat-mini-fab color="primary" aria-label="Attach file">
-          <mat-icon>attach_file</mat-icon>
-        </button>
-      </div>
-      <input type="file" title="attach" class="hidden" #fileInput (change)="onFileSelected($event)" />
-    </mat-card-content>
-  </mat-card>
   <mat-toolbar class="mat-card-actions-align-end">
     <div class="button-container">
-      <button type="submit" mat-raised-button color="primary" aria-label="Submit FNOL">
-        Submit FNOL
+      <button type="submit" mat-raised-button color="primary" aria-label="Submit FNOL" [disabled]="isLoading">
+        Generate FNOL Email
       </button>
     </div>
   </mat-toolbar>
