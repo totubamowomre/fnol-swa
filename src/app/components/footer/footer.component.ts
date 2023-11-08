@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/api/api.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -9,6 +10,8 @@ import { ApiService } from 'src/api/api.service';
 export class FooterComponent implements OnInit {
   name = '...';
   version = '...';
+  isProduction = !environment.production;
+
 
   constructor(private apiService: ApiService) {}
 

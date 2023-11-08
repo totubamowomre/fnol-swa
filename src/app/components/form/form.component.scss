@@ -8,19 +8,11 @@ mat-card {
 }
 
 .mat-card-content {
-    max-width: 300px;
-}
-
-.mat-form-field.full-width {
-    width: 100%;
+    max-width: 1000px;
 }
 
 .button-container {
     margin: 0 20px;
-}
-
-mat-toolbar {
-    margin-bottom: 10px;
 }
 
 .button-container>button {
@@ -29,4 +21,14 @@ mat-toolbar {
 
 .hidden {
     display: none;
+}
+
+.footer-spacer {
+    height: 96px;
+}
+
+.footer-row {
+    position: fixed;
+    width: -webkit-fill-available;
+    bottom: 0;
 }

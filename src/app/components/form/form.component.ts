@@ -19,11 +19,23 @@ export class FormComponent implements OnInit {
     this.form = this.formBuilder.group({
       reporter: this.formBuilder.group({
         relationToInsured: ['', Validators.required],
-        title: ['', Validators.required],
+        title: [''],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        email: ['', Validators.required],
-        phone: ['', Validators.required]
+        email: [''],
+        phone: [''],
+        addressOne: [''],
+        addressTwo: [''],
+        city: [''],
+        state: [''],
+        country: ['United States'],
+        postalCode: ['']
+      }),
+      policy: this.formBuilder.group({
+      }),
+      loss: this.formBuilder.group({
+      }),
+      claimant: this.formBuilder.group({
       }),
     });
   }

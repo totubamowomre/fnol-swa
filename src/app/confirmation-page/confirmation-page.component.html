@@ -1,19 +1,28 @@
-<mat-card>
-  <mat-card-title>
-    <mat-icon>check_circle</mat-icon>
-    Your FNOL email has been generated.
-  </mat-card-title>
-  <mat-card-content>
-    <p>Your FNOL email has been generated - (Reference {{ fnolId }}).</p>
-    <p>Remember to attach any supporting documents before sending.</p>
-  </mat-card-content>
-</mat-card>
-
-<mat-toolbar class="mat-card-actions-align-end">
-  <div class="button-container">
+<div class="row">
+  <div class="col-md-12">
+    <mat-toolbar>
+      <h2>
+        Confirmation
+        <mat-icon>checkmark</mat-icon>
+      </h2>
+    </mat-toolbar>
+  </div>
+</div>
+<div class="confirmation-body">
+  <h3>
+    <img class="icon" src="assets/icons/hail.svg" alt="hail">
+    Your FNOL email has been generated
+  </h3>
+  <p>Your FNOL email has been generated - (Reference {{ fnolId }}).</p>
+  <p>Remember to attach any supporting documents before sending.</p>
+</div>
+<div class="footer-spacer"></div>
+<div class="footer-row">
+  <mat-divider></mat-divider>
+  <mat-toolbar class="align-left-toolbar">
     <button type="button" mat-raised-button color="primary" aria-label="Create Additional FNOL"
       (click)="onCreateAdditionalFnolButtonClick()">
       Create Additional FNOL
     </button>
-  </div>
-</mat-toolbar>
+  </mat-toolbar>
+</div>

@@ -1,3 +1,10 @@
+<div class="row">
+  <div class="col-md-12">
+    <mat-toolbar>
+      <h2>Instructions</h2>
+    </mat-toolbar>
+  </div>
+</div>
 <mat-card>
   <mat-card-title>Steps</mat-card-title>
   <mat-card-content class="instructions">
@@ -9,11 +16,13 @@
   </mat-card-content>
   <p>Click <a href="#" (click)="openTermsDialog($event)">here</a> to Accept Terms and Conditions</p>
 </mat-card>
-
-
-<mat-toolbar class="mat-card-actions-align-end">
-  <button type="button" mat-raised-button color="primary" class="full-width-button" [disabled]="!isStartButtonEnabled"
-    aria-label="Start FNOL" (click)="onStartButtonClick()">
-    Start
-  </button>
-</mat-toolbar>
+<div class="footer-spacer"></div>
+<div class="footer-row">
+  <mat-divider></mat-divider>
+  <mat-toolbar class="mat-card-actions-align-end">
+    <button type="button" mat-raised-button color="primary" class="full-width-button" [disabled]="!isStartButtonEnabled"
+      aria-label="Start FNOL" (click)="onStartButtonClick()">
+      Start
+    </button>
+  </mat-toolbar>
+</div>

@@ -1,62 +1,103 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-card>
-    <mat-card-title class="form-section-title">Reporter</mat-card-title>
+    <mat-card-title class="form-section-title">Reported by</mat-card-title>
     <mat-card-content formGroupName="reporter">
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Role in Relation to Loss</mat-label>
-        <mat-select formControlName="relationToInsured">
-          <mat-option value="Agent">Agent</mat-option>
-          <mat-option value="Insured">Insured</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Title</mat-label>
-        <mat-select formControlName="title">
-          <mat-option value="Mr">Mr</mat-option>
-          <mat-option value="Miss">Miss</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>First Name</mat-label>
-        <input matInput formControlName="firstName" />
-      </mat-form-field>
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Last Name</mat-label>
-        <input matInput formControlName="lastName" />
-      </mat-form-field>
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Phone</mat-label>
-        <input matInput type="tel" formControlName="phone" />
-      </mat-form-field>
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email" />
-      </mat-form-field>
+      <div class="row">
+        <mat-form-field class="col-md-4">
+          <mat-label>Role in Relation to Loss</mat-label>
+          <mat-select formControlName="relationToInsured">
+            <mat-option value="Agent">Agent</mat-option>
+            <mat-option value="Insured">Insured</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-md-4">
+          <mat-label>Title</mat-label>
+          <mat-select formControlName="title">
+            <mat-option value="Mr">Mr</mat-option>
+            <mat-option value="Miss">Miss</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" />
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-md-4">
+          <mat-label>Phone</mat-label>
+          <input matInput type="tel" formControlName="phone" />
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-md-4">
+          <mat-label>Address 1</mat-label>
+          <input matInput formControlName="addressOne" />
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <mat-label>Address 2</mat-label>
+          <input matInput formControlName="addressTwo" />
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-md-4">
+          <mat-label>State/Province</mat-label>
+          <input matInput formControlName="state" />
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <mat-label>Country</mat-label>
+          <mat-select formControlName="country">
+            <mat-option value="United States">United States</mat-option>
+            <mat-option value="United Kingdom">United Kingdom</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <mat-label>Zip/Postal Code</mat-label>
+          <input matInput formControlName="postalCode" />
+        </mat-form-field>
+      </div>
     </mat-card-content>
   </mat-card>
   <mat-card>
-    <mat-card-title class="form-section-title">Policy Information</mat-card-title>
-    <mat-card-content>
+    <mat-card-title class="form-section-title">Insured Policy Information</mat-card-title>
+    <mat-card-content formGroupName="policy">
       <p>Form content here</p>
     </mat-card-content>
   </mat-card>
   <mat-card>
     <mat-card-title class="form-section-title">Loss Information</mat-card-title>
-    <mat-card-content>
+    <mat-card-content formGroupName="loss">
       <p>Form content here</p>
     </mat-card-content>
   </mat-card>
   <mat-card>
     <mat-card-title class="form-section-title">Claimant Information</mat-card-title>
-    <mat-card-content>
+    <mat-card-content formGroupName="claimant">
       <p>Form content here</p>
     </mat-card-content>
   </mat-card>
-  <mat-toolbar class="mat-card-actions-align-end">
-    <div class="button-container">
-      <button type="submit" mat-raised-button color="primary" aria-label="Submit FNOL" [disabled]="isLoading">
-        Generate FNOL Email
-      </button>
-    </div>
-  </mat-toolbar>
+  <div class="footer-spacer"></div>
+  <div class="footer-row">
+    <mat-divider></mat-divider>
+    <mat-toolbar class="mat-card-actions-align-end">
+      <div class="button-container">
+        <button type="submit" mat-raised-button color="primary" aria-label="Submit FNOL" [disabled]="isLoading">
+          Generate FNOL Email
+        </button>
+      </div>
+    </mat-toolbar>
+  </div>
 </form>

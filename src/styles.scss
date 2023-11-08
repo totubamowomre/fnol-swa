@@ -78,9 +78,10 @@ $app-theme: mat.define-light-theme((color: (primary: $app-primary, accent: $app-
 
 html,
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    height: 100%;
+}
+
+body {
     font-family: MunichRe !important;
     background-color: rgb(240, 240, 240) !important;
 }

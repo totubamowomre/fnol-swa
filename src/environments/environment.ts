@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   session: {
     storagePrefix: 'clminsfnoldata-dev',
-    timeOut: 1,
+    timeOut: 10,
   },
   apiUrl: 'https://fnol-function-app.azurewebsites.net',
 };

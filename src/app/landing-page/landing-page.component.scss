@@ -15,9 +15,19 @@ mat-card-title {
 }
 
 mat-toolbar {
-  margin-bottom: 10px;
+  padding: 0 32px;
 }
 
 button.mat-primary {
   color: #fff;
+}
+
+.footer-spacer {
+  height: 96px;
+}
+
+.footer-row {
+  position: fixed;
+  width: -webkit-fill-available;
+  bottom: 0px;
 }
