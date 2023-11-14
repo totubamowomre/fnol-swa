@@ -1,6 +1,6 @@
-import { HttpResponse } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, timer, Subscription } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 import { ApiService } from 'src/api/api.service';
 import { environment } from 'src/environments/environment';
 
@@ -81,22 +81,11 @@ export class SessionService implements OnDestroy {
           SessionService.clearAll();
           console.log('Session ended');
         });
-        // create a new empty FNOL to generate a unique session key
-        const sessionData = {};
-        this.apiService.createFnol(sessionData).subscribe({
-          next: (response: HttpResponse<any>) => {
-            const locationHeader = response.headers.get('Location');
-            const sessionKey = locationHeader?.split('/').pop() || '';
-            SessionService.setSessionKey(sessionKey);
-            SessionService.setSessionData(sessionData);
-            console.log('Session started');
-            resolve(sessionKey);
-          },
-          error: (error: any) => {
-            console.error('Error creating Fnol: ', error);
-            reject(error);
-          },
-        });
+        const sessionKey = uuidv4();
+        SessionService.setSessionKey(sessionKey);
+        SessionService.setSessionData({});
+        console.log('Session started');
+        resolve(sessionKey);
       }
     });
   }

@@ -74,15 +74,7 @@ export class FormPageComponent implements OnInit {
 
     // Delay the navigation for 2 seconds to give user time to see email client
     setTimeout(() => {
-      this.apiService.updateFnol(fnolId, data).subscribe({
-        next: () => {
-          this.router.navigate(['/confirmation'], { state: { fnolId: fnolId } });
-        },
-        error: (error: any) => {
-          console.error('Error updating Fnol:', error);
-          throw error;
-        },
-      });
+      this.router.navigate(['/confirmation'], { state: { fnolId: fnolId } });
     }, 2000);
   }
 

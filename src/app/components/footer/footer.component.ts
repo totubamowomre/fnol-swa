@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/api/api.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,21 +11,11 @@ export class FooterComponent implements OnInit {
   version = '...';
   isProduction = environment.production;
 
-
-  constructor(private apiService: ApiService) {}
+  constructor() { }
 
   async ngOnInit() {
-    this.apiService.getStatus().subscribe({
-      next: response => {
-        this.name = response.body.name;
-        this.version = response.body.version;
-      },
-      error: error => {
-        console.error('Error: ' + JSON.stringify(error.error));
-      },
-      complete: () => {
-        console.log('Connected to backend');
-      },
-    });
+    this.name = 'mrsi.portal.claims.fnol';
+    this.version = '0.1.0';
   }
+
 }

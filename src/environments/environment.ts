@@ -4,12 +4,12 @@
 
 export const environment = {
   production: false,
-  claimsMailbox: 'clmins-dev@muninchre.com',
+  claimsMailbox: 'clmins-dev@munichre.com',
   session: {
     storagePrefix: 'clminsfnoldata-dev',
     timeOut: 10,
   },
-  apiUrl: 'https://fnol-function-app.azurewebsites.net',
+  apiUrl: '',
 };
 
 /*
