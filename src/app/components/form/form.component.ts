@@ -9,6 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class FormComponent implements OnInit {
   @Input() initialData: any;
   form: FormGroup;
+  currentDate = new Date();
   isLoading = false;
 
   @Output() emmitter: EventEmitter<any> = new EventEmitter();
@@ -16,11 +17,11 @@ export class FormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       reporter: this.formBuilder.group({
-        relationToInsured: ['', Validators.required],
+        relationToInsured: [''],
         title: [''],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        email: [''],
+        email: ['', Validators.required],
         phone: [''],
         addressOne: [''],
         addressTwo: [''],
@@ -31,12 +32,22 @@ export class FormComponent implements OnInit {
       }),
       policy: this.formBuilder.group({
         policyNumber: ['', Validators.required],
-        contactSameAsReporter: [false, Validators.required],
+        contactSameAsReporter: [false],
         title: [''],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        email: [''],
+        email: ['', Validators.required],
         phone: [''],
+        addressOne: [''],
+        addressTwo: [''],
+        city: [''],
+        state: [''],
+        country: ['United States'],
+        postalCode: ['']
+      }),
+      loss: this.formBuilder.group({
+        date: ['', Validators.required],
+        description: ['', Validators.required],
         addressOne: [''],
         addressTwo: [''],
         city: [''],

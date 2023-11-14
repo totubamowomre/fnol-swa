@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  claimsMailbox: 'clmins-dev@muninchre.com',
   session: {
     storagePrefix: 'clminsfnoldata-dev',
     timeOut: 10,

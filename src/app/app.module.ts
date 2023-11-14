@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SessionReminderDialogComponent } from './components/session-reminder-dialog/session-reminder-dialog.component';
 import { SessionExpiredDialogComponent } from './components/session-expired-dialog/session-expired-dialog.component';
 import { TermsDialogComponent } from './components/terms-dialog/terms-dialog.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,10 @@ import { TermsDialogComponent } from './components/terms-dialog/terms-dialog.com
     SessionReminderDialogComponent,
     SessionExpiredDialogComponent,
   ],
-  providers: [ApiService],
+  providers: [
+    ApiService,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-US' }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {

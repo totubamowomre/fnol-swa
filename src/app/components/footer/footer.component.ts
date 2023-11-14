@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class FooterComponent implements OnInit {
   name = '...';
   version = '...';
-  isProduction = !environment.production;
+  isProduction = environment.production;
 
 
   constructor(private apiService: ApiService) {}
