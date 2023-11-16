@@ -1,0 +1,28 @@
+.mat-dialog-content .mat-dialog-title {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.mat-dialog-content .mat-icon {
+    margin-right: 8px;
+}
+
+.mat-raised-button.mat-primary {
+    color: #fff;
+}
+
+.mat-dialog-content textarea {
+    width: 100%;
+}
+
+.copy-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.copied {
+    color: #2EB380;
+}

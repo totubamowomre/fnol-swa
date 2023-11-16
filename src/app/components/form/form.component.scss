@@ -4,11 +4,11 @@ mat-card {
 }
 
 .mat-card-title {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .mat-card-content {
-    max-width: 1000px;
+    max-width: 1200px;
 }
 
 .button-container {
@@ -35,4 +35,29 @@ mat-card {
 
 .contact-checkbox {
     padding: 10px 10px;
+}
+
+mat-radio-group {
+    mat-radio-button {
+        padding-right: 20px;
+    }
+}
+
+.any-witness-section,
+.witness-section,
+.authority-notified-section,
+.authority-section,
+.claimant-information-section,
+.add-claimant-link,
+.claimant-section {
+    margin-top: 20px;
+}
+
+.add-witness-link,
+.add-claimant-link {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-bottom: 20px;
 }

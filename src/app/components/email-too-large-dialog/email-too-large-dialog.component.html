@@ -1,0 +1,19 @@
+<mat-dialog-content>
+    <div mat-dialog-title>
+      <mat-icon aria-hidden="false" aria-label="Email content too large">warning</mat-icon>
+      <span>Email Content Too Large</span>
+    </div>
+    <p>The content of the email is too long. You can copy it manually from below:</p>
+    <div style="position: relative;">
+        <textarea rows="10" readonly>{{ data.emailBody }}</textarea>
+        <mat-icon 
+          class="copy-icon" 
+          [ngClass]="{'copied': copied}" 
+          (click)="copyTextToClipboard()">
+          {{ copied ? 'check' : 'content_copy' }}
+        </mat-icon>
+      </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">OK</button>
+  </mat-dialog-actions>

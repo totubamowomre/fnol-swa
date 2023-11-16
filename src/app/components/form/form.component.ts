@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-export class FormComponent  {
+export class FormComponent {
   @Input() initialData: any;
   form: FormGroup;
   currentDate = new Date();
@@ -53,10 +53,47 @@ export class FormComponent  {
         city: [''],
         state: [''],
         country: ['United States'],
-        postalCode: ['']
+        postalCode: [''],
+        anyWitnessOfLoss: ['Yes', Validators.required],
+        witnesses: this.formBuilder.array([
+          this.formBuilder.group({
+            title: [''],
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
+            email: ['', Validators.required],
+            phone: [''],
+            addressOne: [''],
+            addressTwo: [''],
+            city: [''],
+            state: [''],
+            country: ['United States'],
+            postalCode: ['']
+          })
+        ]),
+        areAuthoritiesNotified: ['No', Validators.required],
+        authorityType: [{ value: '', disabled: true }],
+        authorityReportNumber: [{ value: '', disabled: true }],
+        authorityAdditionalInformation: [{ value: '', disabled: true }]
+      }),
+      claimant: this.formBuilder.group({
+        claimantContact: [''],
+        claimants: this.formBuilder.array([
+          this.formBuilder.group({
+            title: [''],
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
+            email: ['', Validators.required],
+            phone: [''],
+            addressOne: [''],
+            addressTwo: [''],
+            city: [''],
+            state: [''],
+            country: ['United States'],
+            postalCode: ['']
+          })
+        ]),
       })
     });
-
 
     this.form?.get('policy.contactSameAsReporter')?.valueChanges.subscribe((checked) => {
       if (checked) {
@@ -85,7 +122,96 @@ export class FormComponent  {
         this.form.get('policy.postalCode')?.enable();
       }
     });
-  } 
+
+    this.form?.get('loss.areAuthoritiesNotified')?.valueChanges.subscribe((value) => {
+      if (value === 'Yes') {
+        this.form.get('loss.authorityType')?.enable();
+        this.form.get('loss.authorityReportNumber')?.enable();
+        this.form.get('loss.authorityAdditionalInformation')?.enable();
+      } else {
+        this.form.get('loss.authorityType')?.disable();
+        this.form.get('loss.authorityReportNumber')?.disable();
+        this.form.get('loss.authorityAdditionalInformation')?.disable();
+      }
+    });
+
+    this.form?.get('loss.anyWitnessOfLoss')?.valueChanges.subscribe((value) => {
+      if (value === 'Yes') {
+        this.addWitness();
+      } else {
+        while (this.witnesses.length !== 0) {
+          this.witnesses.removeAt(0);
+        }
+      }
+    });
+
+    this.form?.get('claimant.claimantContact')?.valueChanges.subscribe((value) => {
+      if (value === 'SameAsReporter') {
+        this.claimants.at(0).setValue(this.mapClaimantFields(this.form.value.reporter));
+      } else if (value === 'SameAsInsured') {
+        this.claimants.at(0).setValue(this.mapClaimantFields(this.form.value.policy));
+      } else {
+        this.claimants.at(0).reset();
+      }
+    });
+  }
+
+  // Helper method to map only the relevant fields
+  mapClaimantFields(source: any): any {
+    return {
+      title: source.title,
+      firstName: source.firstName,
+      lastName: source.lastName,
+      email: source.email,
+      phone: source.phone,
+      addressOne: source.addressOne,
+      addressTwo: source.addressTwo,
+      city: source.city,
+      state: source.state,
+      country: source.country,
+      postalCode: source.postalCode
+    };
+  }
+
+  get witnesses(): FormArray {
+    return this.form.get('loss.witnesses') as FormArray;
+  }
+
+  get claimants(): FormArray {
+    return this.form.get('claimant.claimants') as FormArray;
+  }
+
+  addWitness(): void {
+    this.witnesses.push(this.formBuilder.group({
+      title: [''],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      phone: [''],
+      addressOne: [''],
+      addressTwo: [''],
+      city: [''],
+      state: [''],
+      country: ['United States'],
+      postalCode: ['']
+    }));
+  }
+
+  addClaimant(): void {
+    this.claimants.push(this.formBuilder.group({
+      title: [''],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      phone: [''],
+      addressOne: [''],
+      addressTwo: [''],
+      city: [''],
+      state: [''],
+      country: ['United States'],
+      postalCode: ['']
+    }));
+  }
 
   onSubmit() {
     if (this.form.valid) {
@@ -93,5 +219,4 @@ export class FormComponent  {
       this.emmitter.emit(this.form.value);
     }
   }
-
 }

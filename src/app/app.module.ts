@@ -19,6 +19,7 @@ import { SessionReminderDialogComponent } from './components/session-reminder-di
 import { SessionExpiredDialogComponent } from './components/session-expired-dialog/session-expired-dialog.component';
 import { TermsDialogComponent } from './components/terms-dialog/terms-dialog.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { EmailTooLargeDialogComponent } from './components/email-too-large-dialog/email-too-large-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +31,9 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     FormPageComponent,
     ConfirmationPageComponent,
     TermsDialogComponent,
-    SessionReminderDialogComponent,
+    EmailTooLargeDialogComponent,
     SessionExpiredDialogComponent,
+    SessionReminderDialogComponent,
   ],
   imports: [
     RoutingModule,
@@ -43,8 +45,10 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     NgbModule,
   ],
   entryComponents: [
-    SessionReminderDialogComponent,
+    TermsDialogComponent,
+    EmailTooLargeDialogComponent,
     SessionExpiredDialogComponent,
+    SessionReminderDialogComponent,
   ],
   providers: [
     ApiService,

@@ -84,11 +84,9 @@
           <mat-label>Policy Number</mat-label>
           <input matInput formControlName="policyNumber" />
         </mat-form-field>
-        <div class="col-md-4">
-          <mat-checkbox class="contact-checkbox" formControlName="contactSameAsReporter">Same Contact and Address as
-            Reported by
-            by</mat-checkbox>
-        </div>
+        <mat-checkbox class="col-md-4 contact-checkbox" formControlName="contactSameAsReporter">Same Contact and Address
+          as
+          Reported by</mat-checkbox>
       </div>
       <div class="row">
         <mat-form-field class="col-md-4">
@@ -168,42 +166,222 @@
         </mat-form-field>
       </div>
       <div class="row">
-        <mat-form-field class="col-md-4">
+        <mat-form-field class="col-md-3 offset-md-3">
           <mat-label>Address 1</mat-label>
           <input matInput formControlName="addressOne" />
         </mat-form-field>
-        <mat-form-field class="col-md-4">
+        <mat-form-field class="col-md-3">
           <mat-label>Address 2</mat-label>
           <input matInput formControlName="addressTwo" />
         </mat-form-field>
-        <mat-form-field class="col-md-4">
+        <mat-form-field class="col-md-3">
           <mat-label>City</mat-label>
           <input matInput formControlName="city" />
         </mat-form-field>
       </div>
       <div class="row">
-        <mat-form-field class="col-md-4">
+        <mat-form-field class="col-md-3 offset-md-3">
           <mat-label>State/Province</mat-label>
           <input matInput formControlName="state" />
         </mat-form-field>
-        <mat-form-field class="col-md-4">
+        <mat-form-field class="col-md-3">
           <mat-label>Country</mat-label>
           <mat-select formControlName="country">
             <mat-option value="United States">United States</mat-option>
             <mat-option value="United Kingdom">United Kingdom</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field class="col-md-4">
+        <mat-form-field class="col-md-3">
           <mat-label>Zip/Postal Code</mat-label>
           <input matInput formControlName="postalCode" />
+        </mat-form-field>
+      </div>
+      <div class="row any-witness-section">
+        <mat-label class="col-md-3">Are there any witnesses of loss?</mat-label>
+        <mat-radio-group class="col-md-4" aria-label="Are there any witnesses of loss?"
+          formControlName="anyWitnessOfLoss">
+          <mat-radio-button value="Yes">Yes</mat-radio-button>
+          <mat-radio-button value="No">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div *ngIf="form.value.loss.anyWitnessOfLoss === 'Yes'">
+        <div formArrayName="witnesses">
+          <div class="witness-section" *ngFor="let witness of witnesses.controls; let i = index" [formGroupName]="i">
+            <div class="row">
+              <mat-form-field class="col-md-3 offset-md-3">
+                <mat-label>Title</mat-label>
+                <mat-select formControlName="title">
+                  <mat-option value="Mr">Mr</mat-option>
+                  <mat-option value="Mrs">Mrs</mat-option>
+                  <mat-option value="Ms">Ms</mat-option>
+                  <mat-option value="Miss">Miss</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="col-md-3">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" />
+              </mat-form-field>
+              <mat-form-field class="col-md-3">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" />
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col-md-3 offset-md-3">
+                <mat-label>Phone</mat-label>
+                <input matInput type="tel" formControlName="phone" />
+              </mat-form-field>
+              <mat-form-field class="col-md-3">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" />
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col-md-3 offset-md-3">
+                <mat-label>Address 1</mat-label>
+                <input matInput formControlName="addressOne" />
+              </mat-form-field>
+              <mat-form-field class="col-md-3">
+                <mat-label>Address 2</mat-label>
+                <input matInput formControlName="addressTwo" />
+              </mat-form-field>
+              <mat-form-field class="col-md-3">
+                <mat-label>City</mat-label>
+                <input matInput formControlName="city" />
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col-md-3 offset-md-3">
+                <mat-label>State/Province</mat-label>
+                <input matInput formControlName="state" />
+              </mat-form-field>
+              <mat-form-field class="col-md-3">
+                <mat-label>Country</mat-label>
+                <mat-select formControlName="country">
+                  <mat-option value="United States">United States</mat-option>
+                  <mat-option value="United Kingdom">United Kingdom</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="col-md-3">
+                <mat-label>Zip/Postal Code</mat-label>
+                <input matInput formControlName="postalCode" />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 offset-md-3 add-witness-link" (click)="addWitness()">
+            <mat-icon aria-hidden="false" aria-label="Add additional witness">add</mat-icon>
+            <span>Add additional witness</span>
+          </div>
+        </div>
+      </div>
+      <div class="row authority-notified-section">
+        <mat-label class="col-md-3">Are authorities notified?</mat-label>
+        <mat-radio-group class="col-md-4" aria-label="Are authorities notified?"
+          formControlName="areAuthoritiesNotified">
+          <mat-radio-button value="Yes">Yes</mat-radio-button>
+          <mat-radio-button value="No">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="row authority-section">
+        <mat-form-field class="col-md-3 offset-md-3">
+          <mat-label>Type of Authority</mat-label>
+          <input matInput formControlName="authorityType" />
+        </mat-form-field>
+        <mat-form-field class="col-md-3">
+          <mat-label>Report Reference</mat-label>
+          <input matInput formControlName="authorityReportNumber" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-md-6 offset-md-3">
+          <mat-label>Additional Information</mat-label>
+          <textarea matInput formControlName="authorityAdditionalInformation" rows="4" maxlength="300"></textarea>
         </mat-form-field>
       </div>
     </mat-card-content>
   </mat-card>
   <mat-card>
     <mat-card-title class="form-section-title">Claimant Information</mat-card-title>
-    <mat-card-content>
-      <p>Form content here</p>
+    <mat-card-content formGroupName="claimant">
+      <div class="row claimant-information-section">
+        <mat-radio-group class="col-md-6" aria-label="Claimant Information" formControlName="claimantContact">
+          <mat-radio-button value="">Enter New</mat-radio-button>
+          <mat-radio-button value="SameAsReporter">Same as Reported by</mat-radio-button>
+          <mat-radio-button value="SameAsInsured">Same as Insured</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div formArrayName="claimants">
+        <div class="claimant-section" *ngFor="let claimant of claimants.controls; let i = index" [formGroupName]="i">
+          <div class="row">
+            <mat-form-field class="col-md-4">
+              <mat-label>Title</mat-label>
+              <mat-select formControlName="title">
+                <mat-option value="Mr">Mr</mat-option>
+                <mat-option value="Mrs">Mrs</mat-option>
+                <mat-option value="Ms">Ms</mat-option>
+                <mat-option value="Miss">Miss</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="firstName" />
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lastName" />
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-md-4">
+              <mat-label>Phone</mat-label>
+              <input matInput type="tel" formControlName="phone" />
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email" />
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-md-4">
+              <mat-label>Address 1</mat-label>
+              <input matInput formControlName="addressOne" />
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+              <mat-label>Address 2</mat-label>
+              <input matInput formControlName="addressTwo" />
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+              <mat-label>City</mat-label>
+              <input matInput formControlName="city" />
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-md-4">
+              <mat-label>State/Province</mat-label>
+              <input matInput formControlName="state" />
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+              <mat-label>Country</mat-label>
+              <mat-select formControlName="country">
+                <mat-option value="United States">United States</mat-option>
+                <mat-option value="United Kingdom">United Kingdom</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+              <mat-label>Zip/Postal Code</mat-label>
+              <input matInput formControlName="postalCode" />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 add-claimant-link" (click)="addClaimant()">
+          <mat-icon aria-hidden="false" aria-label="Add additional claimant">add</mat-icon>
+          <span>Add additional claimant</span>
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
   <div class="footer-spacer"></div>
