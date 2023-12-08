@@ -1,8 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, timer, Subscription } from 'rxjs';
-import { v4 as uuidv4 } from 'uuid';
 import { ApiService } from 'src/api/api.service';
 import { environment } from 'src/environments/environment';
+import ShortUniqueId from 'short-unique-id';
 
 @Injectable({
   providedIn: 'root',
@@ -81,7 +81,8 @@ export class SessionService implements OnDestroy {
           SessionService.clearAll();
           console.log('Session ended');
         });
-        const sessionKey = uuidv4();
+        const uid = new ShortUniqueId({ length: 5 });
+        const sessionKey = uid.rnd();
         SessionService.setSessionKey(sessionKey);
         SessionService.setSessionData({});
         console.log('Session started');

@@ -16,7 +16,12 @@ mat-card {
 }
 
 .button-container>button {
-    color: #fff;
+    color: #fff;  
+}
+
+.button-align{
+margin-left:60px;
+margin-right:20px;
 }
 
 .hidden {
@@ -60,4 +65,8 @@ mat-radio-group {
     align-items: center;
     justify-content: start;
     padding-bottom: 20px;
+}
+.warning-text{
+    padding-left: 60px;
+    font-size: medium;
 }

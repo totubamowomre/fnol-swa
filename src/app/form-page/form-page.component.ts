@@ -55,6 +55,14 @@ export class FormPageComponent implements OnInit {
     return `${month}/${day}/${year}`;
   }
 
+  formatDateUS(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${month}-${day}-${year}`;
+  }
+
   indentText(text: string, indentLength: number): string {
     const indentSpace = ' '.repeat(indentLength);
     return text.split('\n').join(`\n${indentSpace}`);
@@ -74,8 +82,7 @@ export class FormPageComponent implements OnInit {
 
     // Open the default mail client
     window.open(emailLink, '_blank');
-
-    this.router.navigate(['/confirmation'], { state: { fnolId: fnolId } })
+    this.router.navigate(['/confirmation'], { state: { fnolId: this.formatDateUS(new Date())+"_"+fnolId } })
   }
 
   generateEmailBody(formData: any): string {
@@ -113,17 +120,17 @@ export class FormPageComponent implements OnInit {
       emailBody += `  Postal Code: ${formData.policy.postalCode}\n`;
     }
 
-    // Loss Information
+    // Loss InformationS
     emailBody += `\n`;
     emailBody += `Loss Information:\n`;
-    emailBody += `  Date: ${this.formatDate(formData.loss.date)}\n`;
+    emailBody += `  Date: ${this.formatDateUS(formData.loss.date)}\n`;
     emailBody += `  Description: ${this.indentText(formData.loss.description, 21)}\n`;
-    emailBody += `  Address 1: ${formData.loss.addressOne}\n`;
-    emailBody += `  Address 2: ${formData.loss.addressTwo}\n`;
-    emailBody += `  City: ${formData.loss.city}\n`;
-    emailBody += `  State: ${formData.loss.state}\n`;
-    emailBody += `  Country: ${formData.loss.country}\n`;
-    emailBody += `  Postal Code: ${formData.loss.postalCode}\n`;
+    emailBody += `  Address 1: ${formData.loss.losses.addressOne}\n`;
+    emailBody += `  Address 2: ${formData.loss.losses.addressTwo}\n`;
+    emailBody += `  City: ${formData.loss.losses.city}\n`;
+    emailBody += `  State: ${formData.loss.losses.state}\n`;
+    emailBody += `  Country: ${formData.loss.losses.country}\n`;
+    emailBody += `  Postal Code: ${formData.loss.losses.postalCode}\n`;
     emailBody += `  Were Authorities Notified?: ${formData.loss.areAuthoritiesNotified}\n`;
     if (formData.loss.areAuthoritiesNotified === 'Yes') {
       emailBody += `    Type: ${formData.loss.authorityType}\n`;
@@ -170,12 +177,13 @@ export class FormPageComponent implements OnInit {
 
   async constructEmailLink(emailBody: string): Promise<string> {
     // Create the mailto link
-    const subject = encodeURIComponent('FNOL Portal - New Submission');
+     const subject = encodeURIComponent("FNOL Portal Request - Reference: "+ this.sessionKey);
     const baseMailto = `mailto:${environment.claimsMailbox}?subject=${subject}&body=`;
     let encodedEmailBody = encodeURIComponent(emailBody);
-
     // Check the total length of the URL
     if ((baseMailto + encodedEmailBody).length > 2000) {
+      //download Payload Text File
+      downloadText(emailBody,"FNOL Portal Request - Reference: "+ this.sessionKey);
       const clippedEmailBody = emailBody.substring(emailBody.indexOf('\n') + 1);
       await new Promise<boolean>(resolve => {
         const dialogRef = this.dialog.open(EmailTooLargeDialogComponent, {
@@ -202,3 +210,15 @@ export class FormPageComponent implements OnInit {
     }
   }
 }
+function downloadText( data: BlobPart,subject: string) {
+  const blob = new Blob([data], { type: 'text/plain'});
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = subject;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);;
+}
+

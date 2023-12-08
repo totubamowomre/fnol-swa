@@ -10,8 +10,7 @@ export class FormComponent {
   @Input() initialData: any;
   form: FormGroup;
   currentDate = new Date();
-  isLoading = false;
-
+  isLoading = true;
   @Output() emmitter: EventEmitter<any> = new EventEmitter();
 
   constructor(private formBuilder: FormBuilder) {
@@ -21,8 +20,8 @@ export class FormComponent {
         title: [''],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        email: ['', Validators.required],
-        phone: [''],
+        email: ['',[Validators.required, Validators.email]],
+        phone: ['',Validators.pattern(/^[0-9]/)],
         addressOne: [''],
         addressTwo: [''],
         city: [''],
@@ -36,8 +35,8 @@ export class FormComponent {
         title: [''],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        email: ['', Validators.required],
-        phone: [''],
+        email: ['',[Validators.required, Validators.email]],
+        phone: ['',Validators.pattern(/^[0-9]$/)],
         addressOne: [''],
         addressTwo: [''],
         city: [''],
@@ -48,20 +47,23 @@ export class FormComponent {
       loss: this.formBuilder.group({
         date: ['', Validators.required],
         description: ['', Validators.required],
-        addressOne: [''],
-        addressTwo: [''],
-        city: [''],
-        state: [''],
-        country: ['United States'],
-        postalCode: [''],
+        lossData:['', Validators.required],
+        losses:this.formBuilder.group({
+          addressOne: [''],
+          addressTwo: [''],
+          city: [''],
+          state: [''],
+          country: ['United States'],
+          postalCode: ['']
+        }),
         anyWitnessOfLoss: ['Yes', Validators.required],
         witnesses: this.formBuilder.array([
           this.formBuilder.group({
             title: [''],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            email: ['', Validators.required],
-            phone: [''],
+            email: ['',[Validators.required, Validators.email]],
+            phone: ['',Validators.pattern(/^[0-9]$/)],
             addressOne: [''],
             addressTwo: [''],
             city: [''],
@@ -82,8 +84,8 @@ export class FormComponent {
             title: [''],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            email: ['', Validators.required],
-            phone: [''],
+            email: ['',[Validators.required, Validators.email]],
+            phone: ['',Validators.pattern(/^[0-9]/)],
             addressOne: [''],
             addressTwo: [''],
             city: [''],
@@ -122,7 +124,6 @@ export class FormComponent {
         this.form.get('policy.postalCode')?.enable();
       }
     });
-
     this.form?.get('loss.areAuthoritiesNotified')?.valueChanges.subscribe((value) => {
       if (value === 'Yes') {
         this.form.get('loss.authorityType')?.enable();
@@ -144,12 +145,29 @@ export class FormComponent {
         }
       }
     });
+    this.form?.get('loss.lossData')?.valueChanges.subscribe((value) => {
+      if (value === 'SameAsReporter') {
+        this.losses.setValue(this.mapLossFields(this.form.value.reporter));
+      } else if (value === 'SameAsInsured') {
+        if(this.form?.get('policy.contactSameAsReporter')?.value === true){
+          this.losses.setValue(this.mapLossFields(this.form.value.reporter));
+        } else {
+          this.losses.setValue(this.mapLossFields(this.form.value.policy));
+        }
+      } else {
+        this.losses.reset();
+      }
+    });
 
     this.form?.get('claimant.claimantContact')?.valueChanges.subscribe((value) => {
       if (value === 'SameAsReporter') {
         this.claimants.at(0).setValue(this.mapClaimantFields(this.form.value.reporter));
       } else if (value === 'SameAsInsured') {
-        this.claimants.at(0).setValue(this.mapClaimantFields(this.form.value.policy));
+        if(this.form?.get('policy.contactSameAsReporter')?.value === true){
+          this.claimants.at(0).setValue(this.mapClaimantFields(this.form.value.reporter));
+        } else {
+          this.claimants.at(0).setValue(this.mapClaimantFields(this.form.value.policy));
+        }
       } else {
         this.claimants.at(0).reset();
       }
@@ -172,10 +190,25 @@ export class FormComponent {
       postalCode: source.postalCode
     };
   }
+  mapLossFields(source: any): any {
+    return {
+      addressOne: source.addressOne,
+      addressTwo: source.addressTwo,
+      city: source.city,
+      state: source.state,
+      country: source.country,
+      postalCode: source.postalCode
+    };
+  }
+
 
   get witnesses(): FormArray {
     return this.form.get('loss.witnesses') as FormArray;
   }
+  get losses(): FormGroup {
+    return this.form.get('loss.losses') as FormGroup;
+  }
+
 
   get claimants(): FormArray {
     return this.form.get('claimant.claimants') as FormArray;
