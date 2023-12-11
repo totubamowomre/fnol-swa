@@ -43,7 +43,7 @@
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" ngModel [email]="true" maxlength="100"/>
+          <input matInput type="email" formControlName="email" ngModel [email]="true" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="100"/>
           <mat-hint align="end" *ngIf="form.value.reporter.email?.length >= 100">Max 100 characters</mat-hint>
           <mat-error *ngIf="form.get('reporter.email')?.hasError('email')">
             Please enter a valid email address
@@ -78,7 +78,13 @@
           <mat-select formControlName="country">
             <mat-option value="United States">United States</mat-option>
             <mat-option value="United Kingdom">United Kingdom</mat-option>
+            <mat-option value="Others">Other</mat-option>
           </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-md-4" *ngIf="form.value.reporter.country === 'Others'">
+          <mat-label>Country Name</mat-label>
+          <input matInput formControlName="customCountry" maxlength="100"/>
+          <mat-hint align="end" *ngIf="form.value.reporter.customCountry?.length >= 100">Max 100 characters</mat-hint>
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Zip/Postal Code</mat-label>
@@ -130,7 +136,7 @@
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" ngModel [email]="true" maxlength="100"/>
+          <input matInput type="email" formControlName="email" ngModel [email]="true" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="100"/>
           <mat-hint align="end" *ngIf="form.value.policy.contactSameAsReporter === false && form.value.policy.email?.length >= 100">Max 100 characters</mat-hint>
           <mat-error *ngIf="form.get('policy.email')?.hasError('email')">
             Please enter a valid email address
@@ -165,7 +171,13 @@
           <mat-select formControlName="country">
             <mat-option value="United States">United States</mat-option>
             <mat-option value="United Kingdom">United Kingdom</mat-option>
+            <mat-option value="Others">Other</mat-option>
           </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-md-4" *ngIf="form.value.policy.country === 'Others'">
+          <mat-label>Country Name</mat-label>
+          <input matInput formControlName="customCountry" maxlength="100"/>
+          <mat-hint align="end" *ngIf="form.value.policy.customCountry?.length >= 100">Max 100 characters</mat-hint>
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Zip/Postal Code</mat-label>
@@ -228,7 +240,13 @@
             <mat-select formControlName="country">
               <mat-option value="United States">United States</mat-option>
               <mat-option value="United Kingdom">United Kingdom</mat-option>
+              <mat-option value="Others">Other</mat-option>
             </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-md-3 offset-md-3" *ngIf="form.value.loss.losses.country === 'Others'">
+            <mat-label>Country Name</mat-label>
+            <input matInput formControlName="customCountry" maxlength="100"/>
+            <mat-hint align="end" *ngIf="form.value.loss.losses.customCountry?.length >= 100">Max 100 characters</mat-hint>
           </mat-form-field>
           <mat-form-field class="col-md-3">
             <mat-label>Zip/Postal Code</mat-label>
@@ -279,6 +297,9 @@
                 <mat-label>Email</mat-label>
                 <input matInput #inputWitEmail type="email" formControlName="email" ngModel [email]="true" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="100">
                 <mat-hint align="end" *ngIf="inputWitEmail.value?.length >= 100">Max 100 characters</mat-hint>
+                <mat-error *ngIf="witness.get('email')?.hasError('email')">
+                  Please enter a valid email address
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="row">
@@ -306,10 +327,16 @@
               </mat-form-field>
               <mat-form-field class="col-md-3">
                 <mat-label>Country</mat-label>
-                <mat-select formControlName="country">
+                <mat-select #inputWitCountry formControlName="country">
                   <mat-option value="United States">United States</mat-option>
                   <mat-option value="United Kingdom">United Kingdom</mat-option>
+                  <mat-option value="Others">Other</mat-option>
                 </mat-select>
+              </mat-form-field>
+              <mat-form-field class="col-md-4" *ngIf="inputWitCountry.value === 'Others'">
+                <mat-label>Country Name</mat-label>
+                <input matInput #inputWitCustCountry formControlName="customCountry" maxlength="100"/>
+                <mat-hint align="end" *ngIf="inputWitCustCountry.value?.length >= 100">Max 100 characters</mat-hint>
               </mat-form-field>
               <mat-form-field class="col-md-3">
                 <mat-label>Zip/Postal Code</mat-label>
@@ -361,7 +388,7 @@
     <mat-card-title class="form-section-title">Claimant Information</mat-card-title>
     <mat-card-content formGroupName="claimant">
       <div class="row claimant-information-section">
-        <mat-radio-group class="col-md-6" aria-label="Claimant Information" formControlName="claimantContact">
+        <mat-radio-group class="col-md-6" aria-label="Claimant Information" formControlName="claimantContact" >
           <mat-radio-button value="">Enter New</mat-radio-button>
           <mat-radio-button value="SameAsReporter">Same as Reported by</mat-radio-button>
           <mat-radio-button value="SameAsInsured">Same as Insured</mat-radio-button>
@@ -400,6 +427,9 @@
               <mat-label>Email</mat-label>
               <input matInput #inputClaimEmail type="email" formControlName="email" ngModel [email]="true" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="100">
               <mat-hint align="end" *ngIf="inputClaimEmail.value?.length >= 100">Max 100 characters</mat-hint>
+              <mat-error *ngIf="claimant.get('email')?.hasError('email')">
+                Please enter a valid email address
+              </mat-error>
             </mat-form-field>
           </div>
           <div class="row">
@@ -427,10 +457,16 @@
             </mat-form-field>
             <mat-form-field class="col-md-4">
               <mat-label>Country</mat-label>
-              <mat-select formControlName="country">
+              <mat-select #inputClaimCountry formControlName="country">
                 <mat-option value="United States">United States</mat-option>
                 <mat-option value="United Kingdom">United Kingdom</mat-option>
+                <mat-option value="Others">Other</mat-option>
               </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-4" *ngIf="inputClaimCountry.value === 'Others'">
+              <mat-label>Country Name</mat-label>
+              <input matInput #inputClaimCustCountry formControlName="customCountry" maxlength="100"/>
+              <mat-hint align="end" *ngIf="inputClaimCustCountry.value?.length >= 100">Max 100 characters</mat-hint>
             </mat-form-field>
             <mat-form-field class="col-md-4">
               <mat-label>Zip/Postal Code</mat-label>
@@ -453,15 +489,15 @@
     <mat-divider></mat-divider>
     <mat-toolbar class="mat-card-actions-align-end">
       <div class="col-md-9 warning-text">
-        <img src="../../../assets/img/warning.png" height="25px" width="25px">
+        <img src="assets/img/warning.png" height="25px" width="25px">
         Please enter all the mandatory fields before moving forward.
       </div>
       <div class="col-md-3 button-container">
-        <button class="button-align" type="reset" mat-raised-button color="primary">
+        <button class="button-align" mat-raised-button color="primary" (click)="resetForm()">
           Reset
         </button>
         <button class="button-align" type="submit" mat-raised-button color="primary" aria-label="Submit FNOL" [disabled]="!form.touched || form.invalid">
-          Generate FNOL Email
+          Generate Email
         </button>
       </div>
     </mat-toolbar>

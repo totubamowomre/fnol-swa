@@ -20,13 +20,14 @@ export class FormComponent {
         title: [''],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        email: ['',[Validators.required, Validators.email]],
-        phone: ['',Validators.pattern(/^[0-9]/)],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', Validators.pattern(/^[0-9]/)],
         addressOne: [''],
         addressTwo: [''],
         city: [''],
         state: [''],
         country: ['United States'],
+        customCountry: [''],
         postalCode: ['']
       }),
       policy: this.formBuilder.group({
@@ -35,25 +36,27 @@ export class FormComponent {
         title: [''],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        email: ['',[Validators.required, Validators.email]],
-        phone: ['',Validators.pattern(/^[0-9]$/)],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', Validators.pattern(/^[0-9]$/)],
         addressOne: [''],
         addressTwo: [''],
         city: [''],
         state: [''],
         country: ['United States'],
+        customCountry: [''],
         postalCode: ['']
       }),
       loss: this.formBuilder.group({
         date: ['', Validators.required],
         description: ['', Validators.required],
-        lossData:['', Validators.required],
+        lossData: [''],
         losses:this.formBuilder.group({
           addressOne: [''],
           addressTwo: [''],
           city: [''],
           state: [''],
           country: ['United States'],
+          customCountry: [''],
           postalCode: ['']
         }),
         anyWitnessOfLoss: ['Yes', Validators.required],
@@ -62,13 +65,14 @@ export class FormComponent {
             title: [''],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            email: ['',[Validators.required, Validators.email]],
-            phone: ['',Validators.pattern(/^[0-9]$/)],
+            email: ['', [Validators.required, Validators.email]],
+            phone: ['', Validators.pattern(/^[0-9]$/)],
             addressOne: [''],
             addressTwo: [''],
             city: [''],
             state: [''],
             country: ['United States'],
+            customCountry: [''],
             postalCode: ['']
           })
         ]),
@@ -84,13 +88,14 @@ export class FormComponent {
             title: [''],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            email: ['',[Validators.required, Validators.email]],
-            phone: ['',Validators.pattern(/^[0-9]/)],
+            email: ['', [Validators.required, Validators.email]],
+            phone: ['', Validators.pattern(/^[0-9]/)],
             addressOne: [''],
             addressTwo: [''],
             city: [''],
             state: [''],
             country: ['United States'],
+            customCountry: [''],
             postalCode: ['']
           })
         ]),
@@ -124,6 +129,7 @@ export class FormComponent {
         this.form.get('policy.postalCode')?.enable();
       }
     });
+    
     this.form?.get('loss.areAuthoritiesNotified')?.valueChanges.subscribe((value) => {
       if (value === 'Yes') {
         this.form.get('loss.authorityType')?.enable();
@@ -145,6 +151,7 @@ export class FormComponent {
         }
       }
     });
+
     this.form?.get('loss.lossData')?.valueChanges.subscribe((value) => {
       if (value === 'SameAsReporter') {
         this.losses.setValue(this.mapLossFields(this.form.value.reporter));
@@ -187,9 +194,11 @@ export class FormComponent {
       city: source.city,
       state: source.state,
       country: source.country,
+      customCountry: source.customCountry,
       postalCode: source.postalCode
     };
   }
+
   mapLossFields(source: any): any {
     return {
       addressOne: source.addressOne,
@@ -197,18 +206,18 @@ export class FormComponent {
       city: source.city,
       state: source.state,
       country: source.country,
+      customCountry: source.customCountry,
       postalCode: source.postalCode
     };
   }
 
-
   get witnesses(): FormArray {
     return this.form.get('loss.witnesses') as FormArray;
   }
+
   get losses(): FormGroup {
     return this.form.get('loss.losses') as FormGroup;
   }
-
 
   get claimants(): FormArray {
     return this.form.get('claimant.claimants') as FormArray;
@@ -244,6 +253,15 @@ export class FormComponent {
       country: ['United States'],
       postalCode: ['']
     }));
+  }
+
+  async resetForm() {
+    this.form.reset();
+    this.form.get('claimant.claimantContact')?.setValue(""); // Reset to your default value
+    this.form.get('loss.lossData')?.setValue(""); // Reset to your default value
+    this.form.get('loss.areAuthoritiesNotified')?.setValue("No"); // Reset to your default value
+    this.form.get('loss.anyWitnessOfLoss')?.setValue("Yes"); // Reset to your default value
+
   }
 
   onSubmit() {
