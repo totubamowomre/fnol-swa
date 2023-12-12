@@ -257,11 +257,10 @@ export class FormComponent {
 
   async resetForm() {
     this.form.reset();
-    this.form.get('claimant.claimantContact')?.setValue(""); // Reset to your default value
-    this.form.get('loss.lossData')?.setValue(""); // Reset to your default value
-    this.form.get('loss.areAuthoritiesNotified')?.setValue("No"); // Reset to your default value
-    this.form.get('loss.anyWitnessOfLoss')?.setValue("Yes"); // Reset to your default value
-
+    this.form.get('claimant.claimantContact')?.setValue("");
+    this.form.get('loss.lossData')?.setValue("");
+    this.form.get('loss.areAuthoritiesNotified')?.setValue("No");
+    this.form.get('loss.anyWitnessOfLoss')?.setValue("Yes");
   }
 
   onSubmit() {

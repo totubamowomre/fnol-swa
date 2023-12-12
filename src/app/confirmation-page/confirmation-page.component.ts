@@ -16,10 +16,19 @@ export class ConfirmationPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.fnolId = history.state.fnolId;
+    this.fnolId = this.formatDateUS(new Date())+"_"+history.state.fnolId;
+
     if (!this.fnolId) {
       this.router.navigate(['']);
     }
+  }
+
+  formatDateUS(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${month}-${day}-${year}`;
   }
 
   async onCreateAdditionalFnolButtonClick(): Promise<any> {

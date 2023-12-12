@@ -199,8 +199,8 @@
         </mat-form-field>
         <mat-form-field class="col-md-9">
           <mat-label>Loss Description</mat-label>
-          <textarea matInput formControlName="description" rows="4" maxlength="1500"></textarea>
-          <mat-hint align="end">{{form.value.loss.description?.length || 0}}/1500</mat-hint>
+          <textarea matInput formControlName="description" rows="4" maxlength="300"></textarea>
+          <mat-hint align="end">{{form.value.loss.description?.length || 0}}/300</mat-hint>
         </mat-form-field>
       </div>
       <div class="row any-witness-section">
