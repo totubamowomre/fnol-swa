@@ -49,8 +49,8 @@ export class FormComponent {
       loss: this.formBuilder.group({
         date: ['', Validators.required],
         description: ['', Validators.required],
-        lossData: [''],
-        losses:this.formBuilder.group({
+        lossLocation: [''],
+        lossAddress:this.formBuilder.group({
           addressOne: [''],
           addressTwo: [''],
           city: [''],
@@ -152,17 +152,17 @@ export class FormComponent {
       }
     });
 
-    this.form?.get('loss.lossData')?.valueChanges.subscribe((value) => {
+    this.form?.get('loss.lossLocation')?.valueChanges.subscribe((value) => {
       if (value === 'SameAsReporter') {
-        this.losses.setValue(this.mapLossFields(this.form.value.reporter));
+        this.lossAddress.setValue(this.mapLossFields(this.form.value.reporter));
       } else if (value === 'SameAsInsured') {
         if(this.form?.get('policy.contactSameAsReporter')?.value === true){
-          this.losses.setValue(this.mapLossFields(this.form.value.reporter));
+          this.lossAddress.setValue(this.mapLossFields(this.form.value.reporter));
         } else {
-          this.losses.setValue(this.mapLossFields(this.form.value.policy));
+          this.lossAddress.setValue(this.mapLossFields(this.form.value.policy));
         }
       } else {
-        this.losses.reset();
+        this.lossAddress.reset();
       }
     });
 
@@ -215,8 +215,8 @@ export class FormComponent {
     return this.form.get('loss.witnesses') as FormArray;
   }
 
-  get losses(): FormGroup {
-    return this.form.get('loss.losses') as FormGroup;
+  get lossAddress(): FormGroup {
+    return this.form.get('loss.lossAddress') as FormGroup;
   }
 
   get claimants(): FormArray {
@@ -258,7 +258,7 @@ export class FormComponent {
   async resetForm() {
     this.form.reset();
     this.form.get('claimant.claimantContact')?.setValue("");
-    this.form.get('loss.lossData')?.setValue("");
+    this.form.get('loss.lossLocation')?.setValue("");
     this.form.get('loss.areAuthoritiesNotified')?.setValue("No");
     this.form.get('loss.anyWitnessOfLoss')?.setValue("Yes");
   }

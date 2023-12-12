@@ -131,20 +131,20 @@ export class FormPageComponent implements OnInit {
     emailBody += `Loss Information:\n`;
     emailBody += `  Date: ${this.formatDateUS(formData.loss.date)}\n`;
     emailBody += `  Description: ${this.indentText(formData.loss.description, 21)}\n`;
-    if (formData.loss.losses.lossData === 'SameAsReporter') {
+    if (formData.loss.lossAddress.lossLocation === 'SameAsReporter') {
       emailBody += `  loss location: Same as Reported by\n`;
-    } else if (formData.loss.losses.lossData === 'SameAsInsured') {
+    } else if (formData.loss.lossAddress.lossLocation === 'SameAsInsured') {
       emailBody += `  loss location: Same as Insured\n`;
     } else {
-      emailBody += `  Address 1: ${formData.loss.losses.addressOne}\n`;
-      emailBody += `  Address 2: ${formData.loss.losses.addressTwo}\n`;
-      emailBody += `  City: ${formData.loss.losses.city}\n`;
-      emailBody += `  State: ${formData.loss.losses.state}\n`;
-      emailBody += `  Country: ${formData.loss.losses.country}\n`;
-      if (formData.loss.losses.customCountry != null) {
-        emailBody += `  Country Name: ${formData.loss.losses.customCountry}\n`;
+      emailBody += `  Address 1: ${formData.loss.lossAddress.addressOne}\n`;
+      emailBody += `  Address 2: ${formData.loss.lossAddress.addressTwo}\n`;
+      emailBody += `  City: ${formData.loss.lossAddress.city}\n`;
+      emailBody += `  State: ${formData.loss.lossAddress.state}\n`;
+      emailBody += `  Country: ${formData.loss.lossAddress.country}\n`;
+      if (formData.loss.lossAddress.customCountry != null) {
+        emailBody += `  Country Name: ${formData.loss.lossAddress.customCountry}\n`;
       } 
-      emailBody += `  Postal Code: ${formData.loss.losses.postalCode}\n`;
+      emailBody += `  Postal Code: ${formData.loss.lossAddress.postalCode}\n`;
     }
     emailBody += `  Were Authorities Notified?: ${formData.loss.areAuthoritiesNotified}\n`;
     if (formData.loss.areAuthoritiesNotified === 'Yes') {
