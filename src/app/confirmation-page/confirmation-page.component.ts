@@ -9,6 +9,7 @@ import { SessionService } from '../session.service';
 })
 export class ConfirmationPageComponent implements OnInit {
   fnolId!: string | null;
+  RefDate!: string | null;
 
   constructor(
     private sessionService: SessionService,
@@ -17,9 +18,17 @@ export class ConfirmationPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.fnolId = history.state.fnolId;
+    this.formatDateUS(new Date());
     if (!this.fnolId) {
       this.router.navigate(['']);
     }
+  }
+
+  formatDateUS(date: Date) {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    this.RefDate = month+"-"+day+"-"+year+"_";
   }
 
   async onCreateAdditionalFnolButtonClick(): Promise<any> {

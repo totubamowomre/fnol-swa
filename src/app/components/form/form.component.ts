@@ -10,8 +10,7 @@ export class FormComponent {
   @Input() initialData: any;
   form: FormGroup;
   currentDate = new Date();
-  isLoading = false;
-
+  isLoading = true;
   @Output() emmitter: EventEmitter<any> = new EventEmitter();
 
   constructor(private formBuilder: FormBuilder) {
@@ -21,13 +20,14 @@ export class FormComponent {
         title: [''],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        email: ['', Validators.required],
-        phone: [''],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', Validators.pattern(/^[0-9]/)],
         addressOne: [''],
         addressTwo: [''],
         city: [''],
         state: [''],
         country: ['United States'],
+        customCountry: [''],
         postalCode: ['']
       }),
       policy: this.formBuilder.group({
@@ -36,37 +36,43 @@ export class FormComponent {
         title: [''],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        email: ['', Validators.required],
-        phone: [''],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', Validators.pattern(/^[0-9]$/)],
         addressOne: [''],
         addressTwo: [''],
         city: [''],
         state: [''],
         country: ['United States'],
+        customCountry: [''],
         postalCode: ['']
       }),
       loss: this.formBuilder.group({
         date: ['', Validators.required],
         description: ['', Validators.required],
-        addressOne: [''],
-        addressTwo: [''],
-        city: [''],
-        state: [''],
-        country: ['United States'],
-        postalCode: [''],
+        lossLocation: [''],
+        lossAddress:this.formBuilder.group({
+          addressOne: [''],
+          addressTwo: [''],
+          city: [''],
+          state: [''],
+          country: ['United States'],
+          customCountry: [''],
+          postalCode: ['']
+        }),
         anyWitnessOfLoss: ['Yes', Validators.required],
         witnesses: this.formBuilder.array([
           this.formBuilder.group({
             title: [''],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            email: ['', Validators.required],
-            phone: [''],
+            email: ['', [Validators.required, Validators.email]],
+            phone: ['', Validators.pattern(/^[0-9]$/)],
             addressOne: [''],
             addressTwo: [''],
             city: [''],
             state: [''],
             country: ['United States'],
+            customCountry: [''],
             postalCode: ['']
           })
         ]),
@@ -82,13 +88,14 @@ export class FormComponent {
             title: [''],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            email: ['', Validators.required],
-            phone: [''],
+            email: ['', [Validators.required, Validators.email]],
+            phone: ['', Validators.pattern(/^[0-9]/)],
             addressOne: [''],
             addressTwo: [''],
             city: [''],
             state: [''],
             country: ['United States'],
+            customCountry: [''],
             postalCode: ['']
           })
         ]),
@@ -122,7 +129,7 @@ export class FormComponent {
         this.form.get('policy.postalCode')?.enable();
       }
     });
-
+    
     this.form?.get('loss.areAuthoritiesNotified')?.valueChanges.subscribe((value) => {
       if (value === 'Yes') {
         this.form.get('loss.authorityType')?.enable();
@@ -145,11 +152,29 @@ export class FormComponent {
       }
     });
 
+    this.form?.get('loss.lossLocation')?.valueChanges.subscribe((value) => {
+      if (value === 'SameAsReporter') {
+        this.lossAddress.setValue(this.mapLossFields(this.form.value.reporter));
+      } else if (value === 'SameAsInsured') {
+        if(this.form?.get('policy.contactSameAsReporter')?.value === true){
+          this.lossAddress.setValue(this.mapLossFields(this.form.value.reporter));
+        } else {
+          this.lossAddress.setValue(this.mapLossFields(this.form.value.policy));
+        }
+      } else {
+        this.lossAddress.reset();
+      }
+    });
+
     this.form?.get('claimant.claimantContact')?.valueChanges.subscribe((value) => {
       if (value === 'SameAsReporter') {
         this.claimants.at(0).setValue(this.mapClaimantFields(this.form.value.reporter));
       } else if (value === 'SameAsInsured') {
-        this.claimants.at(0).setValue(this.mapClaimantFields(this.form.value.policy));
+        if(this.form?.get('policy.contactSameAsReporter')?.value === true){
+          this.claimants.at(0).setValue(this.mapClaimantFields(this.form.value.reporter));
+        } else {
+          this.claimants.at(0).setValue(this.mapClaimantFields(this.form.value.policy));
+        }
       } else {
         this.claimants.at(0).reset();
       }
@@ -169,12 +194,29 @@ export class FormComponent {
       city: source.city,
       state: source.state,
       country: source.country,
+      customCountry: source.customCountry,
+      postalCode: source.postalCode
+    };
+  }
+
+  mapLossFields(source: any): any {
+    return {
+      addressOne: source.addressOne,
+      addressTwo: source.addressTwo,
+      city: source.city,
+      state: source.state,
+      country: source.country,
+      customCountry: source.customCountry,
       postalCode: source.postalCode
     };
   }
 
   get witnesses(): FormArray {
     return this.form.get('loss.witnesses') as FormArray;
+  }
+
+  get lossAddress(): FormGroup {
+    return this.form.get('loss.lossAddress') as FormGroup;
   }
 
   get claimants(): FormArray {
@@ -211,6 +253,14 @@ export class FormComponent {
       country: ['United States'],
       postalCode: ['']
     }));
+  }
+
+  async resetForm() {
+    this.form.reset();
+    this.form.get('claimant.claimantContact')?.setValue("");
+    this.form.get('loss.lossLocation')?.setValue("");
+    this.form.get('loss.areAuthoritiesNotified')?.setValue("No");
+    this.form.get('loss.anyWitnessOfLoss')?.setValue("Yes");
   }
 
   onSubmit() {

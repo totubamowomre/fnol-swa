@@ -32,8 +32,8 @@
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.2.0",
     "rxjs": "~7.5.0",
+    "short-unique-id": "^5.0.3",
     "tslib": "^2.3.0",
-    "uuid": "^9.0.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
