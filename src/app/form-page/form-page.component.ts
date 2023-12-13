@@ -180,31 +180,31 @@ export class FormPageComponent implements OnInit {
     emailBody += `Loss Information:\n`;
     emailBody += `  Date: ${this.formatDateUS(formData.loss.date)}\n`;
     emailBody += `  Description: ${this.indentText(formData.loss.description, 21)}\n`;
-    if (formData.loss.lossData === 'SameAsReporter') {
+    if (formData.loss.lossLocation === 'SameAsReporter') {
       emailBody += `  loss location: Same as Reported by\n`;
-    } else if (formData.loss.lossData === 'SameAsInsured') {
+    } else if (formData.loss.lossLocation === 'SameAsInsured') {
       emailBody += `  loss location: Same as Insured\n`;
     } else {
-      if (formData.loss.losses.addressOne != "") {
-        emailBody += `  Address 1: ${formData.loss.losses.addressOne}\n`;
+      if (formData.loss.lossAddress.addressOne != "") {
+        emailBody += `  Address 1: ${formData.loss.lossAddress.addressOne}\n`;
       }
-      if (formData.loss.losses.addressTwo != "") {
-        emailBody += `  Address 2: ${formData.loss.losses.addressTwo}\n`;
+      if (formData.loss.lossAddress.addressTwo != "") {
+        emailBody += `  Address 2: ${formData.loss.lossAddress.addressTwo}\n`;
       }
-      if (formData.loss.losses.city != "") {
-        emailBody += `  City: ${formData.loss.losses.city}\n`;
+      if (formData.loss.lossAddress.city != "") {
+        emailBody += `  City: ${formData.loss.lossAddress.city}\n`;
       }
-      if (formData.loss.losses.state != "") {
-        emailBody += `  State: ${formData.loss.losses.state}\n`;
+      if (formData.loss.lossAddress.state != "") {
+        emailBody += `  State: ${formData.loss.lossAddress.state}\n`;
       }
-      if (formData.loss.losses.country != "") {
-        emailBody += `  Country: ${formData.loss.losses.country}\n`;
+      if (formData.loss.lossAddress.country != "") {
+        emailBody += `  Country: ${formData.loss.lossAddress.country}\n`;
       }
-      if (formData.loss.losses.customCountry != "") {
-        emailBody += `  Country Name: ${formData.loss.losses.customCountry}\n`;
+      if (formData.loss.lossAddress.customCountry != "") {
+        emailBody += `  Country Name: ${formData.loss.lossAddress.customCountry}\n`;
       }
-      if (formData.loss.losses.postalCode != "") {
-        emailBody += `  Postal Code: ${formData.loss.losses.postalCode}\n`;
+      if (formData.loss.lossAddress.postalCode != "") {
+        emailBody += `  Postal Code: ${formData.loss.lossAddress.postalCode}\n`;
       }
     }
     emailBody += `  Were Authorities Notified?: ${formData.loss.areAuthoritiesNotified}\n`;
