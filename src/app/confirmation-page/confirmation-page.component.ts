@@ -43,7 +43,7 @@ export class ConfirmationPageComponent implements OnInit {
     window.open(this.emailLink, '_blank');
   }
 
- async downloadText() {
+  downloadText() {
     const blob = new Blob([this.data], { type: 'text/plain'});
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
