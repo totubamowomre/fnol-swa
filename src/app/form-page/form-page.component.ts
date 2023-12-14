@@ -83,7 +83,8 @@ export class FormPageComponent implements OnInit {
     // Open the default mail client
     window.open(emailLink, '_blank');
 
-    this.router.navigate(['/confirmation'], { state: { fnolId: fnolId } })
+    const clippedEmailBody = emailBody.substring(emailBody.indexOf('\n') + 1);
+    this.router.navigate(['/confirmation'],{state: { fnolId: fnolId, emailBody: clippedEmailBody, emailLink: emailLink }})
   }
 
   generateEmailBody(formData: any): string {

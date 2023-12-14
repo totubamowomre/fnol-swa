@@ -20,6 +20,7 @@
 <div class="footer-row">
   <mat-divider></mat-divider>
   <mat-toolbar class="align-left-toolbar">
+    <button id="btnDownload" type="button" mat-raised-button color="primary" (click)="downloadText()" [hidden]="hideButton">Download</button>
     <button type="button" mat-raised-button color="primary" aria-label="Create Additional FNOL"
       (click)="onCreateAdditionalFnolButtonClick()">
       Create Additional FNOL
