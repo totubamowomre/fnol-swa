@@ -84,7 +84,7 @@ export class FormPageComponent implements OnInit {
     window.open(emailLink, '_blank');
 
     const clippedEmailBody = emailBody.substring(emailBody.indexOf('\n') + 1);
-    this.router.navigate(['/confirmation'],{ state: { fnolId: fnolId, emailBody: clippedEmailBody, emailLink: emailLink } })
+    this.router.navigate(['/confirmation'], { state: { fnolId: fnolId, emailBody: clippedEmailBody, emailLink: emailLink } })
   }
 
   generateEmailBody(formData: any): string {
