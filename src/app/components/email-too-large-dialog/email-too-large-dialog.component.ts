@@ -17,19 +17,6 @@ export class EmailTooLargeDialogComponent {
     dialogRef.disableClose = true;
   }
   
-   downloadText() {
-    const blob = new Blob([this.data.emailBody], { type: 'text/plain'});
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = "FNOL Portal Request - Reference: "+SessionService.getSessionKey();
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);;
-  }
-
-
   copyTextToClipboard() {
     navigator.clipboard.writeText(this.data.emailBody).then(() => {
       this.copied = true;
