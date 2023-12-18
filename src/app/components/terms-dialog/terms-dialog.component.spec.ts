@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TermsDialogComponent } from './terms-dialog.component';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatModule } from 'src/app/material.module';
 
 describe('TermsDialogComponent', () => {
   let component: TermsDialogComponent;
@@ -8,7 +10,11 @@ describe('TermsDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TermsDialogComponent ]
+      imports: [MatModule],
+      declarations: [ TermsDialogComponent ],
+      providers: [
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
     .compileComponents();
 
