@@ -20,11 +20,15 @@ describe('FormPageComponent', () => {
       isSessionActive: true,
       getSessionKey: 'sessionKey',
       getSessionData: {},
-      setSessionData: null
+      setSessionData: null,
     });
 
-    mockSessionService.currentSessionReminder = new BehaviorSubject(false).asObservable();
-    mockSessionService.currentSessionState = new BehaviorSubject(false).asObservable();
+    mockSessionService.currentSessionReminder = new BehaviorSubject(
+      false
+    ).asObservable();
+    mockSessionService.currentSessionState = new BehaviorSubject(
+      false
+    ).asObservable();
 
     mockRouter = jasmine.createSpyObj('Router', ['navigate', 'open']);
 
@@ -33,15 +37,15 @@ describe('FormPageComponent', () => {
       declarations: [FormPageComponent],
       providers: [
         { provide: SessionService, useValue: mockSessionService },
-        { provide: Router, useValue: mockRouter }
-      ]
+        { provide: Router, useValue: mockRouter },
+      ],
     }).compileComponents();
   });
 
   beforeEach(() => {
     mockHistoryState = { sessionKey: 'sessionKey' };
     const mockHistory: History = Object.create(window.history, {
-      state: { value: mockHistoryState }
+      state: { value: mockHistoryState },
     });
     spyOnProperty(window, 'history', 'get').and.returnValue(mockHistory);
 

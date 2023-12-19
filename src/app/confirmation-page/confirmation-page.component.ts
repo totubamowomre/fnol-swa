@@ -17,7 +17,7 @@ export class ConfirmationPageComponent implements OnInit {
   constructor(
     private sessionService: SessionService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.fnolId = history.state.fnolId;
@@ -27,7 +27,7 @@ export class ConfirmationPageComponent implements OnInit {
     if (!this.fnolId) {
       this.router.navigate(['']);
     }
-    if(this.data.length <= 2000) {
+    if (this.data.length <= 2000) {
       this.hideButton = true;
     }
   }
@@ -36,23 +36,24 @@ export class ConfirmationPageComponent implements OnInit {
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
-    this.RefDate = month+"-"+day+"-"+year+"_";
+    this.RefDate = month + '-' + day + '-' + year + '_';
   }
-  
+
   regenerateEmail() {
     window.open(this.emailLink, '_blank');
   }
 
   downloadText() {
-    const blob = new Blob([this.data], { type: 'text/plain'});
+    const blob = new Blob([this.data], { type: 'text/plain' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = "FNOL Portal Request - Reference: "+SessionService.getSessionKey();
+    a.download =
+      'FNOL Portal Request - Reference: ' + SessionService.getSessionKey();
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);;
+    window.URL.revokeObjectURL(url);
   }
 
   async onCreateAdditionalFnolButtonClick(): Promise<any> {

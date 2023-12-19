@@ -27,24 +27,44 @@
         <mat-form-field class="col-md-4">
           <mat-label>First Name</mat-label>
           <input matInput formControlName="firstName" maxlength="100" />
-          <mat-hint align="end" *ngIf="form.value.reporter.firstName?.length >= 100">Max 100 characters</mat-hint>
+          <mat-hint
+            align="end"
+            *ngIf="form.value.reporter.firstName?.length >= 100"
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Last Name</mat-label>
-          <input matInput formControlName="lastName" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.reporter.lastName?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="lastName" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="form.value.reporter.lastName?.length >= 100"
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="col-md-4">
           <mat-label>Phone</mat-label>
-          <input matInput type="tel" formControlName="phone" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.reporter.phone?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput type="tel" formControlName="phone" maxlength="100" />
+          <mat-hint align="end" *ngIf="form.value.reporter.phone?.length >= 100"
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" ngModel [email]="true" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.reporter.email?.length >= 100">Max 100 characters</mat-hint>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            ngModel
+            [email]="true"
+            pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+            maxlength="100"
+          />
+          <mat-hint align="end" *ngIf="form.value.reporter.email?.length >= 100"
+            >Max 100 characters</mat-hint
+          >
           <mat-error *ngIf="form.get('reporter.email')?.hasError('email')">
             Please enter a valid email address
           </mat-error>
@@ -53,25 +73,37 @@
       <div class="row">
         <mat-form-field class="col-md-4">
           <mat-label>Mailing Address:</mat-label>
-          <input matInput formControlName="addressOne" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.reporter.addressOne?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="addressOne" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="form.value.reporter.addressOne?.length >= 100"
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Street/Post Office Box:</mat-label>
-          <input matInput formControlName="addressTwo" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.reporter.addressTwo?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="addressTwo" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="form.value.reporter.addressTwo?.length >= 100"
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>City</mat-label>
-          <input matInput formControlName="city" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.reporter.city?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="city" maxlength="100" />
+          <mat-hint align="end" *ngIf="form.value.reporter.city?.length >= 100"
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="col-md-4">
           <mat-label>State/Province</mat-label>
-          <input matInput formControlName="state" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.reporter.state?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="state" maxlength="100" />
+          <mat-hint align="end" *ngIf="form.value.reporter.state?.length >= 100"
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Country</mat-label>
@@ -81,31 +113,50 @@
             <mat-option value="Others">Other</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field class="col-md-4" *ngIf="form.value.reporter.country === 'Others'">
+        <mat-form-field
+          class="col-md-4"
+          *ngIf="form.value.reporter.country === 'Others'"
+        >
           <mat-label>Country Name</mat-label>
-          <input matInput formControlName="customCountry" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.reporter.customCountry?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="customCountry" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="form.value.reporter.customCountry?.length >= 100"
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Zip/Postal Code</mat-label>
-          <input matInput formControlName="postalCode" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.reporter.postalCode?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="postalCode" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="form.value.reporter.postalCode?.length >= 100"
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
       </div>
     </mat-card-content>
   </mat-card>
   <mat-card>
-    <mat-card-title class="form-section-title">Policy Information</mat-card-title>
+    <mat-card-title class="form-section-title"
+      >Policy Information</mat-card-title
+    >
     <mat-card-content formGroupName="policy">
       <div class="row">
         <mat-form-field class="col-md-4">
           <mat-label>Policy Number</mat-label>
-          <input matInput formControlName="policyNumber" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.policy.policyNumber?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="policyNumber" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="form.value.policy.policyNumber?.length >= 100"
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
-        <mat-checkbox class="col-md-4 contact-checkbox" formControlName="contactSameAsReporter">Same Contact and Address
-          as
-          Reported by</mat-checkbox>
+        <mat-checkbox
+          class="col-md-4 contact-checkbox"
+          formControlName="contactSameAsReporter"
+          >Same Contact and Address as Reported by</mat-checkbox
+        >
       </div>
       <div class="row">
         <mat-form-field class="col-md-4">
@@ -117,27 +168,63 @@
             <mat-option value="Miss">Miss</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field class="col-md-4" >
+        <mat-form-field class="col-md-4">
           <mat-label>First Name</mat-label>
-          <input matInput formControlName="firstName" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.policy.contactSameAsReporter === false && form.value.policy.firstName?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="firstName" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="
+              form.value.policy.contactSameAsReporter === false &&
+              form.value.policy.firstName?.length >= 100
+            "
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Last Name</mat-label>
-          <input matInput formControlName="lastName" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.policy.contactSameAsReporter === false && form.value.policy.lastName?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="lastName" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="
+              form.value.policy.contactSameAsReporter === false &&
+              form.value.policy.lastName?.length >= 100
+            "
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="col-md-4">
           <mat-label>Phone</mat-label>
-          <input matInput type="tel" formControlName="phone" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.policy.contactSameAsReporter === false && form.value.policy.phone?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput type="tel" formControlName="phone" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="
+              form.value.policy.contactSameAsReporter === false &&
+              form.value.policy.phone?.length >= 100
+            "
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" ngModel [email]="true" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.policy.contactSameAsReporter === false && form.value.policy.email?.length >= 100">Max 100 characters</mat-hint>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            ngModel
+            [email]="true"
+            pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+            maxlength="100"
+          />
+          <mat-hint
+            align="end"
+            *ngIf="
+              form.value.policy.contactSameAsReporter === false &&
+              form.value.policy.email?.length >= 100
+            "
+            >Max 100 characters</mat-hint
+          >
           <mat-error *ngIf="form.get('policy.email')?.hasError('email')">
             Please enter a valid email address
           </mat-error>
@@ -146,25 +233,53 @@
       <div class="row">
         <mat-form-field class="col-md-4">
           <mat-label>Mailing Address:</mat-label>
-          <input matInput formControlName="addressOne" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.policy.contactSameAsReporter === false && form.value.policy.addressOne?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="addressOne" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="
+              form.value.policy.contactSameAsReporter === false &&
+              form.value.policy.addressOne?.length >= 100
+            "
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Street/Post Office Box:</mat-label>
-          <input matInput formControlName="addressTwo" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.policy.contactSameAsReporter === false && form.value.policy.addressTwo?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="addressTwo" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="
+              form.value.policy.contactSameAsReporter === false &&
+              form.value.policy.addressTwo?.length >= 100
+            "
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>City</mat-label>
-          <input matInput formControlName="city" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.policy.contactSameAsReporter === false && form.value.policy.city?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="city" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="
+              form.value.policy.contactSameAsReporter === false &&
+              form.value.policy.city?.length >= 100
+            "
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="col-md-4">
           <mat-label>State/Province</mat-label>
-          <input matInput formControlName="state" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.policy.contactSameAsReporter === false && form.value.policy.state?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="state" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="
+              form.value.policy.contactSameAsReporter === false &&
+              form.value.policy.state?.length >= 100
+            "
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Country</mat-label>
@@ -174,15 +289,29 @@
             <mat-option value="Others">Other</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field class="col-md-4" *ngIf="form.value.policy.country === 'Others'">
+        <mat-form-field
+          class="col-md-4"
+          *ngIf="form.value.policy.country === 'Others'"
+        >
           <mat-label>Country Name</mat-label>
-          <input matInput formControlName="customCountry" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.policy.customCountry?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="customCountry" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="form.value.policy.customCountry?.length >= 100"
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
         <mat-form-field class="col-md-4">
           <mat-label>Zip/Postal Code</mat-label>
-          <input matInput formControlName="postalCode" maxlength="100"/>
-          <mat-hint align="end" *ngIf="form.value.policy.contactSameAsReporter === false && form.value.policy.postalCode?.length >= 100">Max 100 characters</mat-hint>
+          <input matInput formControlName="postalCode" maxlength="100" />
+          <mat-hint
+            align="end"
+            *ngIf="
+              form.value.policy.contactSameAsReporter === false &&
+              form.value.policy.postalCode?.length >= 100
+            "
+            >Max 100 characters</mat-hint
+          >
         </mat-form-field>
       </div>
     </mat-card-content>
@@ -193,47 +322,99 @@
       <div class="row">
         <mat-form-field class="col-md-3">
           <mat-label>Date of Loss</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="date" [max]="currentDate" placeholder="MM/DD/YYYY">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="date"
+            [max]="currentDate"
+            placeholder="MM/DD/YYYY"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="col-md-9">
           <mat-label>Loss Description</mat-label>
-          <textarea matInput formControlName="description" rows="4" maxlength="300"></textarea>
-          <mat-hint align="end">{{form.value.loss.description?.length || 0}}/300</mat-hint>
+          <textarea
+            matInput
+            formControlName="description"
+            rows="4"
+            maxlength="300"
+          ></textarea>
+          <mat-hint align="end"
+            >{{ form.value.loss.description?.length || 0 }}/300</mat-hint
+          >
         </mat-form-field>
       </div>
       <div class="row any-witness-section">
         <mat-label class="col-md-3">Loss location:</mat-label>
-          <mat-radio-group class="col-md-6" aria-label="Loss location:" formControlName="lossLocation">
-            <mat-radio-button value="">Enter New</mat-radio-button>
-            <mat-radio-button value="SameAsReporter">Same as Reported by</mat-radio-button>
-            <mat-radio-button value="SameAsInsured">Same as Insured</mat-radio-button>
-          </mat-radio-group>
+        <mat-radio-group
+          class="col-md-6"
+          aria-label="Loss location:"
+          formControlName="lossLocation"
+        >
+          <mat-radio-button value="">Enter New</mat-radio-button>
+          <mat-radio-button value="SameAsReporter"
+            >Same as Reported by</mat-radio-button
+          >
+          <mat-radio-button value="SameAsInsured"
+            >Same as Insured</mat-radio-button
+          >
+        </mat-radio-group>
       </div>
       <div formGroupName="lossAddress">
         <div class="row any-witness-section">
           <mat-form-field class="col-md-3 offset-md-3">
             <mat-label>Mailing Address:</mat-label>
-            <input matInput formControlName="addressOne" maxlength="100">
-            <mat-hint align="end" *ngIf="form.value.loss.lossLocation !== '' && form.value.loss.lossAddress.addressOne?.length >= 100">Max 100 characters</mat-hint>
+            <input matInput formControlName="addressOne" maxlength="100" />
+            <mat-hint
+              align="end"
+              *ngIf="
+                form.value.loss.lossLocation !== '' &&
+                form.value.loss.lossAddress.addressOne?.length >= 100
+              "
+              >Max 100 characters</mat-hint
+            >
           </mat-form-field>
           <mat-form-field class="col-md-3">
             <mat-label>Street/Post Office Box:</mat-label>
-            <input matInput formControlName="addressTwo" maxlength="100">
-            <mat-hint align="end" *ngIf="form.value.loss.lossLocation !== '' && form.value.loss.lossAddress.addressTwo?.length >= 100">Max 100 characters</mat-hint>
+            <input matInput formControlName="addressTwo" maxlength="100" />
+            <mat-hint
+              align="end"
+              *ngIf="
+                form.value.loss.lossLocation !== '' &&
+                form.value.loss.lossAddress.addressTwo?.length >= 100
+              "
+              >Max 100 characters</mat-hint
+            >
           </mat-form-field>
           <mat-form-field class="col-md-3">
             <mat-label>City</mat-label>
-            <input matInput formControlName="city" maxlength="100">
-            <mat-hint align="end" *ngIf="form.value.loss.lossLocation !== '' && form.value.loss.lossAddress.city?.length >= 100">Max 100 characters</mat-hint>
+            <input matInput formControlName="city" maxlength="100" />
+            <mat-hint
+              align="end"
+              *ngIf="
+                form.value.loss.lossLocation !== '' &&
+                form.value.loss.lossAddress.city?.length >= 100
+              "
+              >Max 100 characters</mat-hint
+            >
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field class="col-md-3 offset-md-3">
             <mat-label>State/Province</mat-label>
-            <input matInput formControlName="state" maxlength="100">
-            <mat-hint align="end" *ngIf="form.value.loss.lossLocation !== '' && form.value.loss.lossAddress.state?.length >= 100">Max 100 characters</mat-hint>
+            <input matInput formControlName="state" maxlength="100" />
+            <mat-hint
+              align="end"
+              *ngIf="
+                form.value.loss.lossLocation !== '' &&
+                form.value.loss.lossAddress.state?.length >= 100
+              "
+              >Max 100 characters</mat-hint
+            >
           </mat-form-field>
           <mat-form-field class="col-md-3">
             <mat-label>Country</mat-label>
@@ -243,29 +424,50 @@
               <mat-option value="Others">Other</mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field class="col-md-3 offset-md-3" *ngIf="form.value.loss.lossAddress.country === 'Others'">
+          <mat-form-field
+            class="col-md-3 offset-md-3"
+            *ngIf="form.value.loss.lossAddress.country === 'Others'"
+          >
             <mat-label>Country Name</mat-label>
-            <input matInput formControlName="customCountry" maxlength="100"/>
-            <mat-hint align="end" *ngIf="form.value.loss.lossAddress.customCountry?.length >= 100">Max 100 characters</mat-hint>
+            <input matInput formControlName="customCountry" maxlength="100" />
+            <mat-hint
+              align="end"
+              *ngIf="form.value.loss.lossAddress.customCountry?.length >= 100"
+              >Max 100 characters</mat-hint
+            >
           </mat-form-field>
           <mat-form-field class="col-md-3">
             <mat-label>Zip/Postal Code</mat-label>
-            <input matInput formControlName="postalCode" maxlength="100">
-            <mat-hint align="end" *ngIf="form.value.loss.lossLocation !== '' &&  form.value.loss.lossAddress.postalCode?.length >= 100">Max 100 characters</mat-hint>
+            <input matInput formControlName="postalCode" maxlength="100" />
+            <mat-hint
+              align="end"
+              *ngIf="
+                form.value.loss.lossLocation !== '' &&
+                form.value.loss.lossAddress.postalCode?.length >= 100
+              "
+              >Max 100 characters</mat-hint
+            >
           </mat-form-field>
         </div>
       </div>
       <div class="row any-witness-section">
         <mat-label class="col-md-3">Are there any witnesses of loss?</mat-label>
-        <mat-radio-group class="col-md-4" aria-label="Are there any witnesses of loss?"
-          formControlName="anyWitnessOfLoss">
+        <mat-radio-group
+          class="col-md-4"
+          aria-label="Are there any witnesses of loss?"
+          formControlName="anyWitnessOfLoss"
+        >
           <mat-radio-button value="Yes">Yes</mat-radio-button>
           <mat-radio-button value="No">No</mat-radio-button>
         </mat-radio-group>
       </div>
       <div *ngIf="form.value.loss.anyWitnessOfLoss === 'Yes'">
         <div formArrayName="witnesses">
-          <div class="witness-section" *ngFor="let witness of witnesses.controls; let i = index" [formGroupName]="i">
+          <div
+            class="witness-section"
+            *ngFor="let witness of witnesses.controls; let i = index"
+            [formGroupName]="i"
+          >
             <div class="row">
               <mat-form-field class="col-md-3 offset-md-3">
                 <mat-label>Title</mat-label>
@@ -278,25 +480,58 @@
               </mat-form-field>
               <mat-form-field class="col-md-3">
                 <mat-label>First Name</mat-label>
-                <input matInput #inputWitFN formControlName="firstName" maxlength="100">
-                <mat-hint align="end" *ngIf="inputWitFN.value?.length >= 100">Max 100 characters</mat-hint>
+                <input
+                  matInput
+                  #inputWitFN
+                  formControlName="firstName"
+                  maxlength="100"
+                />
+                <mat-hint align="end" *ngIf="inputWitFN.value?.length >= 100"
+                  >Max 100 characters</mat-hint
+                >
               </mat-form-field>
               <mat-form-field class="col-md-3">
                 <mat-label>Last Name</mat-label>
-                <input matInput #inputWitLN formControlName="lastName" maxlength="100">
-                <mat-hint align="end" *ngIf="inputWitLN.value?.length >= 100">Max 100 characters</mat-hint>
+                <input
+                  matInput
+                  #inputWitLN
+                  formControlName="lastName"
+                  maxlength="100"
+                />
+                <mat-hint align="end" *ngIf="inputWitLN.value?.length >= 100"
+                  >Max 100 characters</mat-hint
+                >
               </mat-form-field>
             </div>
             <div class="row">
               <mat-form-field class="col-md-3 offset-md-3">
                 <mat-label>Phone</mat-label>
-                <input matInput #inputWitPhone type="tel" formControlName="phone" maxlength="100">
-                <mat-hint align="end" *ngIf="inputWitPhone.value?.length >= 100">Max 100 characters</mat-hint>
+                <input
+                  matInput
+                  #inputWitPhone
+                  type="tel"
+                  formControlName="phone"
+                  maxlength="100"
+                />
+                <mat-hint align="end" *ngIf="inputWitPhone.value?.length >= 100"
+                  >Max 100 characters</mat-hint
+                >
               </mat-form-field>
               <mat-form-field class="col-md-3">
                 <mat-label>Email</mat-label>
-                <input matInput #inputWitEmail type="email" formControlName="email" ngModel [email]="true" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="100">
-                <mat-hint align="end" *ngIf="inputWitEmail.value?.length >= 100">Max 100 characters</mat-hint>
+                <input
+                  matInput
+                  #inputWitEmail
+                  type="email"
+                  formControlName="email"
+                  ngModel
+                  [email]="true"
+                  pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                  maxlength="100"
+                />
+                <mat-hint align="end" *ngIf="inputWitEmail.value?.length >= 100"
+                  >Max 100 characters</mat-hint
+                >
                 <mat-error *ngIf="witness.get('email')?.hasError('email')">
                   Please enter a valid email address
                 </mat-error>
@@ -305,25 +540,55 @@
             <div class="row">
               <mat-form-field class="col-md-3 offset-md-3">
                 <mat-label>Mailing Address:</mat-label>
-                <input matInput #inputWitMA formControlName="addressOne" maxlength="100">
-                <mat-hint align="end" *ngIf="inputWitMA.value?.length >= 100">Max 100 characters</mat-hint>
+                <input
+                  matInput
+                  #inputWitMA
+                  formControlName="addressOne"
+                  maxlength="100"
+                />
+                <mat-hint align="end" *ngIf="inputWitMA.value?.length >= 100"
+                  >Max 100 characters</mat-hint
+                >
               </mat-form-field>
               <mat-form-field class="col-md-3">
                 <mat-label>Street/Post Office Box:</mat-label>
-                <input matInput #inputWitStreet formControlName="addressTwo" maxlength="100">
-                <mat-hint align="end" *ngIf="inputWitStreet.value?.length >= 100">Max 100 characters</mat-hint>
+                <input
+                  matInput
+                  #inputWitStreet
+                  formControlName="addressTwo"
+                  maxlength="100"
+                />
+                <mat-hint
+                  align="end"
+                  *ngIf="inputWitStreet.value?.length >= 100"
+                  >Max 100 characters</mat-hint
+                >
               </mat-form-field>
               <mat-form-field class="col-md-3">
                 <mat-label>City</mat-label>
-                <input matInput #inputWitCity formControlName="city" maxlength="100">
-                <mat-hint align="end" *ngIf="inputWitCity.value?.length >= 100">Max 100 characters</mat-hint>
+                <input
+                  matInput
+                  #inputWitCity
+                  formControlName="city"
+                  maxlength="100"
+                />
+                <mat-hint align="end" *ngIf="inputWitCity.value?.length >= 100"
+                  >Max 100 characters</mat-hint
+                >
               </mat-form-field>
             </div>
             <div class="row">
               <mat-form-field class="col-md-3 offset-md-3">
                 <mat-label>State/Province</mat-label>
-                <input matInput #inputWitState formControlName="state" maxlength="100">
-                <mat-hint align="end" *ngIf="inputWitState.value?.length >= 100">Max 100 characters</mat-hint>
+                <input
+                  matInput
+                  #inputWitState
+                  formControlName="state"
+                  maxlength="100"
+                />
+                <mat-hint align="end" *ngIf="inputWitState.value?.length >= 100"
+                  >Max 100 characters</mat-hint
+                >
               </mat-form-field>
               <mat-form-field class="col-md-3">
                 <mat-label>Country</mat-label>
@@ -333,30 +598,57 @@
                   <mat-option value="Others">Other</mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-form-field class="col-md-4" *ngIf="inputWitCountry.value === 'Others'">
+              <mat-form-field
+                class="col-md-4"
+                *ngIf="inputWitCountry.value === 'Others'"
+              >
                 <mat-label>Country Name</mat-label>
-                <input matInput #inputWitCustCountry formControlName="customCountry" maxlength="100"/>
-                <mat-hint align="end" *ngIf="inputWitCustCountry.value?.length >= 100">Max 100 characters</mat-hint>
+                <input
+                  matInput
+                  #inputWitCustCountry
+                  formControlName="customCountry"
+                  maxlength="100"
+                />
+                <mat-hint
+                  align="end"
+                  *ngIf="inputWitCustCountry.value?.length >= 100"
+                  >Max 100 characters</mat-hint
+                >
               </mat-form-field>
               <mat-form-field class="col-md-3">
                 <mat-label>Zip/Postal Code</mat-label>
-                <input matInput #inputWitZip formControlName="postalCode" maxlength="100">
-                <mat-hint align="end" *ngIf="inputWitZip.value?.length >= 100">Max 100 characters</mat-hint>
+                <input
+                  matInput
+                  #inputWitZip
+                  formControlName="postalCode"
+                  maxlength="100"
+                />
+                <mat-hint align="end" *ngIf="inputWitZip.value?.length >= 100"
+                  >Max 100 characters</mat-hint
+                >
               </mat-form-field>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-3 offset-md-3 add-witness-link" (click)="addWitness()">
-            <mat-icon aria-hidden="false" aria-label="Add additional witness">add</mat-icon>
+          <div
+            class="col-md-3 offset-md-3 add-witness-link"
+            (click)="addWitness()"
+          >
+            <mat-icon aria-hidden="false" aria-label="Add additional witness"
+              >add</mat-icon
+            >
             <span>Add additional witness</span>
           </div>
         </div>
       </div>
       <div class="row authority-notified-section">
         <mat-label class="col-md-3">Are authorities notified?</mat-label>
-        <mat-radio-group class="col-md-4" aria-label="Are authorities notified?"
-          formControlName="areAuthoritiesNotified">
+        <mat-radio-group
+          class="col-md-4"
+          aria-label="Are authorities notified?"
+          formControlName="areAuthoritiesNotified"
+        >
           <mat-radio-button value="Yes">Yes</mat-radio-button>
           <mat-radio-button value="No">No</mat-radio-button>
         </mat-radio-group>
@@ -365,37 +657,72 @@
         <div class="row authority-section">
           <mat-form-field class="col-md-3 offset-md-3">
             <mat-label>Type of Authority</mat-label>
-            <input matInput formControlName="authorityType" maxlength="100">
-            <mat-hint align="end" *ngIf="form.value.loss.authorityType?.length >= 100">Max 100 characters</mat-hint>
+            <input matInput formControlName="authorityType" maxlength="100" />
+            <mat-hint
+              align="end"
+              *ngIf="form.value.loss.authorityType?.length >= 100"
+              >Max 100 characters</mat-hint
+            >
           </mat-form-field>
           <mat-form-field class="col-md-3">
             <mat-label>Report Reference</mat-label>
-            <input matInput formControlName="authorityReportNumber" maxlength="100">
-            <mat-hint align="end" *ngIf="form.value.loss.authorityReportNumber?.length >= 100">Max 100 characters</mat-hint>
+            <input
+              matInput
+              formControlName="authorityReportNumber"
+              maxlength="100"
+            />
+            <mat-hint
+              align="end"
+              *ngIf="form.value.loss.authorityReportNumber?.length >= 100"
+              >Max 100 characters</mat-hint
+            >
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field class="col-md-6 offset-md-3">
             <mat-label>Additional Information</mat-label>
-            <textarea matInput formControlName="authorityAdditionalInformation" rows="4" maxlength="300"></textarea>
-            <mat-hint align="end">{{form.value.loss.authorityAdditionalInformation?.length || 0}}/300</mat-hint>
+            <textarea
+              matInput
+              formControlName="authorityAdditionalInformation"
+              rows="4"
+              maxlength="300"
+            ></textarea>
+            <mat-hint align="end"
+              >{{
+                form.value.loss.authorityAdditionalInformation?.length || 0
+              }}/300</mat-hint
+            >
           </mat-form-field>
         </div>
       </div>
     </mat-card-content>
   </mat-card>
   <mat-card>
-    <mat-card-title class="form-section-title">Claimant Information</mat-card-title>
+    <mat-card-title class="form-section-title"
+      >Claimant Information</mat-card-title
+    >
     <mat-card-content formGroupName="claimant">
       <div class="row claimant-information-section">
-        <mat-radio-group class="col-md-6" aria-label="Claimant Information" formControlName="claimantContact" >
+        <mat-radio-group
+          class="col-md-6"
+          aria-label="Claimant Information"
+          formControlName="claimantContact"
+        >
           <mat-radio-button value="">Enter New</mat-radio-button>
-          <mat-radio-button value="SameAsReporter">Same as Reported by</mat-radio-button>
-          <mat-radio-button value="SameAsInsured">Same as Insured</mat-radio-button>
+          <mat-radio-button value="SameAsReporter"
+            >Same as Reported by</mat-radio-button
+          >
+          <mat-radio-button value="SameAsInsured"
+            >Same as Insured</mat-radio-button
+          >
         </mat-radio-group>
       </div>
       <div formArrayName="claimants">
-        <div class="claimant-section" *ngFor="let claimant of claimants.controls; let i = index" [formGroupName]="i">
+        <div
+          class="claimant-section"
+          *ngFor="let claimant of claimants.controls; let i = index"
+          [formGroupName]="i"
+        >
           <div class="row">
             <mat-form-field class="col-md-4">
               <mat-label>Title</mat-label>
@@ -408,25 +735,58 @@
             </mat-form-field>
             <mat-form-field class="col-md-4">
               <mat-label>First Name</mat-label>
-              <input matInput #inputClaimFN formControlName="firstName" maxlength="100">
-              <mat-hint align="end" *ngIf="inputClaimFN.value?.length >= 100">Max 100 characters</mat-hint>
+              <input
+                matInput
+                #inputClaimFN
+                formControlName="firstName"
+                maxlength="100"
+              />
+              <mat-hint align="end" *ngIf="inputClaimFN.value?.length >= 100"
+                >Max 100 characters</mat-hint
+              >
             </mat-form-field>
             <mat-form-field class="col-md-4">
               <mat-label>Last Name</mat-label>
-              <input matInput #inputClaimLN formControlName="lastName" maxlength="100">
-              <mat-hint align="end" *ngIf="inputClaimLN.value?.length >= 100">Max 100 characters</mat-hint>
+              <input
+                matInput
+                #inputClaimLN
+                formControlName="lastName"
+                maxlength="100"
+              />
+              <mat-hint align="end" *ngIf="inputClaimLN.value?.length >= 100"
+                >Max 100 characters</mat-hint
+              >
             </mat-form-field>
           </div>
           <div class="row">
             <mat-form-field class="col-md-4">
               <mat-label>Phone</mat-label>
-              <input matInput type="tel" #inputClaimPhone formControlName="phone" maxlength="100">
-              <mat-hint align="end" *ngIf="inputClaimPhone.value?.length >= 100">Max 100 characters</mat-hint>
+              <input
+                matInput
+                type="tel"
+                #inputClaimPhone
+                formControlName="phone"
+                maxlength="100"
+              />
+              <mat-hint align="end" *ngIf="inputClaimPhone.value?.length >= 100"
+                >Max 100 characters</mat-hint
+              >
             </mat-form-field>
             <mat-form-field class="col-md-4">
               <mat-label>Email</mat-label>
-              <input matInput #inputClaimEmail type="email" formControlName="email" ngModel [email]="true" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="100">
-              <mat-hint align="end" *ngIf="inputClaimEmail.value?.length >= 100">Max 100 characters</mat-hint>
+              <input
+                matInput
+                #inputClaimEmail
+                type="email"
+                formControlName="email"
+                ngModel
+                [email]="true"
+                pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                maxlength="100"
+              />
+              <mat-hint align="end" *ngIf="inputClaimEmail.value?.length >= 100"
+                >Max 100 characters</mat-hint
+              >
               <mat-error *ngIf="claimant.get('email')?.hasError('email')">
                 Please enter a valid email address
               </mat-error>
@@ -435,25 +795,55 @@
           <div class="row">
             <mat-form-field class="col-md-4">
               <mat-label>Mailing Address:</mat-label>
-              <input matInput #inputClaimMA formControlName="addressOne" maxlength="100">
-              <mat-hint align="end" *ngIf="inputClaimMA.value?.length >= 100">Max 100 characters</mat-hint>
+              <input
+                matInput
+                #inputClaimMA
+                formControlName="addressOne"
+                maxlength="100"
+              />
+              <mat-hint align="end" *ngIf="inputClaimMA.value?.length >= 100"
+                >Max 100 characters</mat-hint
+              >
             </mat-form-field>
             <mat-form-field class="col-md-4">
               <mat-label>Street/Post Office Box:</mat-label>
-              <input matInput #inputClaimStreet formControlName="addressTwo" maxlength="100">
-              <mat-hint align="end" *ngIf="inputClaimStreet.value?.length >= 100">Max 100 characters</mat-hint>
+              <input
+                matInput
+                #inputClaimStreet
+                formControlName="addressTwo"
+                maxlength="100"
+              />
+              <mat-hint
+                align="end"
+                *ngIf="inputClaimStreet.value?.length >= 100"
+                >Max 100 characters</mat-hint
+              >
             </mat-form-field>
             <mat-form-field class="col-md-4">
               <mat-label>City</mat-label>
-              <input matInput #inputClaimCity formControlName="city" maxlength="100">
-              <mat-hint align="end" *ngIf="inputClaimCity.value?.length >= 100">Max 100 characters</mat-hint>
+              <input
+                matInput
+                #inputClaimCity
+                formControlName="city"
+                maxlength="100"
+              />
+              <mat-hint align="end" *ngIf="inputClaimCity.value?.length >= 100"
+                >Max 100 characters</mat-hint
+              >
             </mat-form-field>
           </div>
           <div class="row">
             <mat-form-field class="col-md-4">
               <mat-label>State/Province</mat-label>
-              <input matInput #inputClaimState formControlName="state" maxlength="100">
-              <mat-hint align="end" *ngIf="inputClaimState.value?.length >= 100">Max 100 characters</mat-hint>
+              <input
+                matInput
+                #inputClaimState
+                formControlName="state"
+                maxlength="100"
+              />
+              <mat-hint align="end" *ngIf="inputClaimState.value?.length >= 100"
+                >Max 100 characters</mat-hint
+              >
             </mat-form-field>
             <mat-form-field class="col-md-4">
               <mat-label>Country</mat-label>
@@ -463,22 +853,43 @@
                 <mat-option value="Others">Other</mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field class="col-md-4" *ngIf="inputClaimCountry.value === 'Others'">
+            <mat-form-field
+              class="col-md-4"
+              *ngIf="inputClaimCountry.value === 'Others'"
+            >
               <mat-label>Country Name</mat-label>
-              <input matInput #inputClaimCustCountry formControlName="customCountry" maxlength="100"/>
-              <mat-hint align="end" *ngIf="inputClaimCustCountry.value?.length >= 100">Max 100 characters</mat-hint>
+              <input
+                matInput
+                #inputClaimCustCountry
+                formControlName="customCountry"
+                maxlength="100"
+              />
+              <mat-hint
+                align="end"
+                *ngIf="inputClaimCustCountry.value?.length >= 100"
+                >Max 100 characters</mat-hint
+              >
             </mat-form-field>
             <mat-form-field class="col-md-4">
               <mat-label>Zip/Postal Code</mat-label>
-              <input matInput #inputClaimZip formControlName="postalCode" maxlength="100">
-              <mat-hint align="end" *ngIf="inputClaimZip.value?.length >= 100">Max 100 characters</mat-hint>
+              <input
+                matInput
+                #inputClaimZip
+                formControlName="postalCode"
+                maxlength="100"
+              />
+              <mat-hint align="end" *ngIf="inputClaimZip.value?.length >= 100"
+                >Max 100 characters</mat-hint
+              >
             </mat-form-field>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-4 add-claimant-link" (click)="addClaimant()">
-          <mat-icon aria-hidden="false" aria-label="Add additional claimant">add</mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Add additional claimant"
+            >add</mat-icon
+          >
           <span>Add additional claimant</span>
         </div>
       </div>
@@ -489,14 +900,26 @@
     <mat-divider></mat-divider>
     <mat-toolbar class="mat-card-actions-align-end">
       <div class="col-md-9 warning-text">
-        <img src="assets/img/warning.png" height="25px" width="25px">
+        <img src="assets/img/warning.png" height="25px" width="25px" />
         Please enter all the mandatory fields before moving forward.
       </div>
       <div class="col-md-3 button-container">
-        <button class="button-align" mat-raised-button color="primary" (click)="resetForm()">
+        <button
+          class="button-align"
+          mat-raised-button
+          color="primary"
+          (click)="resetForm()"
+        >
           Reset
         </button>
-        <button class="button-align" type="submit" mat-raised-button color="primary" aria-label="Submit FNOL" [disabled]="!form.touched || form.invalid">
+        <button
+          class="button-align"
+          type="submit"
+          mat-raised-button
+          color="primary"
+          aria-label="Submit FNOL"
+          [disabled]="!form.touched || form.invalid"
+        >
           Generate Email
         </button>
       </div>

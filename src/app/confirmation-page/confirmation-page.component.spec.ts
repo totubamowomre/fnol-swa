@@ -14,7 +14,9 @@ describe('ConfirmationPageComponent', () => {
   let mockHistoryState: any;
 
   beforeEach(async () => {
-    mockSessionService = jasmine.createSpyObj('SessionService', ['startSession']);
+    mockSessionService = jasmine.createSpyObj('SessionService', [
+      'startSession',
+    ]);
     mockRouter = jasmine.createSpyObj('Router', ['navigate', 'open']);
 
     await TestBed.configureTestingModule({
@@ -22,15 +24,19 @@ describe('ConfirmationPageComponent', () => {
       declarations: [ConfirmationPageComponent],
       providers: [
         { provide: SessionService, useValue: mockSessionService },
-        { provide: Router, useValue: mockRouter }
-      ]
+        { provide: Router, useValue: mockRouter },
+      ],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    mockHistoryState = { fnolId: '123', emailBody: 'test email body', emailLink: 'test link' };
+    mockHistoryState = {
+      fnolId: '123',
+      emailBody: 'test email body',
+      emailLink: 'test link',
+    };
     const mockHistory: History = Object.create(window.history, {
-      state: { value: mockHistoryState }
+      state: { value: mockHistoryState },
     });
     spyOnProperty(window, 'history', 'get').and.returnValue(mockHistory);
 
@@ -88,7 +94,9 @@ describe('ConfirmationPageComponent', () => {
   it('should clear session and navigate to form page', async () => {
     await component.onCreateAdditionalFnolButtonClick();
     expect(component['sessionService'].startSession).toHaveBeenCalled();
-    expect(component['router'].navigate).toHaveBeenCalledWith(['/form'], { state: { sessionKey: undefined } });
+    expect(component['router'].navigate).toHaveBeenCalledWith(['/form'], {
+      state: { sessionKey: undefined },
+    });
   });
 
   it('should open email link in a new tab', () => {

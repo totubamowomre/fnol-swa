@@ -4,11 +4,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-terms-dialog',
   templateUrl: './terms-dialog.component.html',
-  styleUrls: ['./terms-dialog.component.scss']
+  styleUrls: ['./terms-dialog.component.scss'],
 })
 export class TermsDialogComponent {
-
-  constructor(public dialogRef: MatDialogRef<TermsDialogComponent>) { }
+  constructor(public dialogRef: MatDialogRef<TermsDialogComponent>) {}
 
   onAccept(): void {
     this.dialogRef.close(true);
@@ -29,8 +28,7 @@ export class TermsDialogComponent {
           <title>Claims FNOL - Print</title>
         </head>
         <body onload="window.print();window.close()">${printContents}</body>
-      </html>`
-    );
+      </html>`);
     popupWin!.document.close();
   }
 }

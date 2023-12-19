@@ -16,7 +16,7 @@ export class LandingPageComponent {
     private router: Router,
     public dialog: MatDialog,
     private sessionService: SessionService
-  ) { }
+  ) {}
 
   openTermsDialog(event: any): void {
     event.preventDefault();

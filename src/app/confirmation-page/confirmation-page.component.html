@@ -10,19 +10,35 @@
 </div>
 <div class="confirmation-body">
   <h3>
-    <img class="icon" src="assets/icons/hail.svg" alt="hail">
+    <img class="icon" src="assets/icons/hail.svg" alt="hail" />
     Your FNOL email has been generated
   </h3>
-  <p>Your FNOL email has been generated - (Reference {{ RefDate }}{{ fnolId }}).</p>
+  <p>
+    Your FNOL email has been generated - (Reference {{ RefDate }}{{ fnolId }}).
+  </p>
   <p>Remember to attach any supporting documents before sending.</p>
 </div>
 <div class="footer-spacer"></div>
 <div class="footer-row">
   <mat-divider></mat-divider>
   <mat-toolbar class="align-left-toolbar">
-    <button id="btnDownload" type="button" mat-raised-button color="primary" (click)="downloadText()" [hidden]="hideButton">Download</button>
-    <button type="button" mat-raised-button color="primary" aria-label="Create Additional FNOL"
-      (click)="onCreateAdditionalFnolButtonClick()">
+    <button
+      id="btnDownload"
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="downloadText()"
+      [hidden]="hideButton"
+    >
+      Download
+    </button>
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      aria-label="Create Additional FNOL"
+      (click)="onCreateAdditionalFnolButtonClick()"
+    >
       Create Additional FNOL
     </button>
   </mat-toolbar>

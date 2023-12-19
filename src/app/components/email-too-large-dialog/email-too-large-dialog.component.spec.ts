@@ -15,10 +15,9 @@ describe('EmailTooLargeDialogComponent', () => {
       declarations: [EmailTooLargeDialogComponent],
       providers: [
         { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: { emailBody: "" } }
-      ]
-    })
-      .compileComponents();
+        { provide: MAT_DIALOG_DATA, useValue: { emailBody: '' } },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EmailTooLargeDialogComponent);
     component = fixture.componentInstance;

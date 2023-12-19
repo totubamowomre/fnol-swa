@@ -1,21 +1,29 @@
 <mat-dialog-content>
-    <div mat-dialog-title>
-        <mat-icon aria-hidden="false" aria-label="Terms and Conditions">description</mat-icon>
-        <span>Terms and Conditions</span>
-    </div>
-    <div #termsText>
-        <p>The Terms and Conditions set forth below constitutes a legally binding agreement (“Agreement”) upon acceptance.
-            By clicking on the "Accept" button, you are agreeing that you have read, understood, and agree to be legally bound by this Agreement.
-            If you are entering into this Agreement on behalf someone other than yourself, such as your employer, another individual or other legal entity (collectively, a “Person”),
-            your acceptance represents that you have the authority to bind such Person to this Agreement, in which case "you" or "your" shall refer to that Person.
-            If you do not agree to all of the terms of this Agreement, or if you do not have the authority to bind any Person, do not click “Accept” to these terms and 
-            you will not be granted access to use the platform.
-        </p>
-    </div>
+  <div mat-dialog-title>
+    <mat-icon aria-hidden="false" aria-label="Terms and Conditions"
+      >description</mat-icon
+    >
+    <span>Terms and Conditions</span>
+  </div>
+  <div #termsText>
+    <p>
+      The Terms and Conditions set forth below constitutes a legally binding
+      agreement (“Agreement”) upon acceptance. By clicking on the "Accept"
+      button, you are agreeing that you have read, understood, and agree to be
+      legally bound by this Agreement. If you are entering into this Agreement
+      on behalf someone other than yourself, such as your employer, another
+      individual or other legal entity (collectively, a “Person”), your
+      acceptance represents that you have the authority to bind such Person to
+      this Agreement, in which case "you" or "your" shall refer to that Person.
+      If you do not agree to all of the terms of this Agreement, or if you do
+      not have the authority to bind any Person, do not click “Accept” to these
+      terms and you will not be granted access to use the platform.
+    </p>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button (click)="printTerms(termsText)">Print</button>
-    <span class="flex-spacer"></span>
-    <button mat-raised-button color="primary" (click)="onAccept()">Accept</button>
-    <button mat-raised-button color="primary" (click)="onReject()">Reject</button>
+  <button mat-button (click)="printTerms(termsText)">Print</button>
+  <span class="flex-spacer"></span>
+  <button mat-raised-button color="primary" (click)="onAccept()">Accept</button>
+  <button mat-raised-button color="primary" (click)="onReject()">Reject</button>
 </mat-dialog-actions>

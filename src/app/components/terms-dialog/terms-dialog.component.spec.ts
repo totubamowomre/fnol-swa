@@ -11,12 +11,9 @@ describe('TermsDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatModule],
-      declarations: [ TermsDialogComponent ],
-      providers: [
-        { provide: MatDialogRef, useValue: {} }
-      ]
-    })
-    .compileComponents();
+      declarations: [TermsDialogComponent],
+      providers: [{ provide: MatDialogRef, useValue: {} }],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TermsDialogComponent);
     component = fixture.componentInstance;

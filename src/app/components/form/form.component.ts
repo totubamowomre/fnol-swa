@@ -28,7 +28,7 @@ export class FormComponent {
         state: [''],
         country: ['United States'],
         customCountry: [''],
-        postalCode: ['']
+        postalCode: [''],
       }),
       policy: this.formBuilder.group({
         policyNumber: ['', Validators.required],
@@ -44,20 +44,20 @@ export class FormComponent {
         state: [''],
         country: ['United States'],
         customCountry: [''],
-        postalCode: ['']
+        postalCode: [''],
       }),
       loss: this.formBuilder.group({
         date: ['', Validators.required],
         description: ['', Validators.required],
         lossLocation: [''],
-        lossAddress:this.formBuilder.group({
+        lossAddress: this.formBuilder.group({
           addressOne: [''],
           addressTwo: [''],
           city: [''],
           state: [''],
           country: ['United States'],
           customCountry: [''],
-          postalCode: ['']
+          postalCode: [''],
         }),
         anyWitnessOfLoss: ['Yes', Validators.required],
         witnesses: this.formBuilder.array([
@@ -73,13 +73,13 @@ export class FormComponent {
             state: [''],
             country: ['United States'],
             customCountry: [''],
-            postalCode: ['']
-          })
+            postalCode: [''],
+          }),
         ]),
         areAuthoritiesNotified: ['No', Validators.required],
         authorityType: [{ value: '', disabled: true }],
         authorityReportNumber: [{ value: '', disabled: true }],
-        authorityAdditionalInformation: [{ value: '', disabled: true }]
+        authorityAdditionalInformation: [{ value: '', disabled: true }],
       }),
       claimant: this.formBuilder.group({
         claimantContact: [''],
@@ -96,53 +96,57 @@ export class FormComponent {
             state: [''],
             country: ['United States'],
             customCountry: [''],
-            postalCode: ['']
-          })
+            postalCode: [''],
+          }),
         ]),
-      })
+      }),
     });
 
-    this.form?.get('policy.contactSameAsReporter')?.valueChanges.subscribe((checked) => {
-      if (checked) {
-        this.form.get('policy.title')?.disable();
-        this.form.get('policy.firstName')?.disable();
-        this.form.get('policy.lastName')?.disable();
-        this.form.get('policy.email')?.disable();
-        this.form.get('policy.phone')?.disable();
-        this.form.get('policy.addressOne')?.disable();
-        this.form.get('policy.addressTwo')?.disable();
-        this.form.get('policy.city')?.disable();
-        this.form.get('policy.state')?.disable();
-        this.form.get('policy.country')?.disable();
-        this.form.get('policy.postalCode')?.disable();
-      } else {
-        this.form.get('policy.title')?.enable();
-        this.form.get('policy.firstName')?.enable();
-        this.form.get('policy.lastName')?.enable();
-        this.form.get('policy.email')?.enable();
-        this.form.get('policy.phone')?.enable();
-        this.form.get('policy.addressOne')?.enable();
-        this.form.get('policy.addressTwo')?.enable();
-        this.form.get('policy.city')?.enable();
-        this.form.get('policy.state')?.enable();
-        this.form.get('policy.country')?.enable();
-        this.form.get('policy.postalCode')?.enable();
-      }
-    });
-    
-    this.form?.get('loss.areAuthoritiesNotified')?.valueChanges.subscribe((value) => {
-      if (value === 'Yes') {
-        this.form.get('loss.authorityType')?.enable();
-        this.form.get('loss.authorityReportNumber')?.enable();
-        this.form.get('loss.authorityAdditionalInformation')?.enable();
-      } else {
-        this.form.get('loss.authorityType')?.disable();
-        this.form.get('loss.authorityReportNumber')?.disable();
-        this.form.get('loss.authorityAdditionalInformation')?.disable();
-      }
-    });
+    this.form
+      ?.get('policy.contactSameAsReporter')
+      ?.valueChanges.subscribe(checked => {
+        if (checked) {
+          this.form.get('policy.title')?.disable();
+          this.form.get('policy.firstName')?.disable();
+          this.form.get('policy.lastName')?.disable();
+          this.form.get('policy.email')?.disable();
+          this.form.get('policy.phone')?.disable();
+          this.form.get('policy.addressOne')?.disable();
+          this.form.get('policy.addressTwo')?.disable();
+          this.form.get('policy.city')?.disable();
+          this.form.get('policy.state')?.disable();
+          this.form.get('policy.country')?.disable();
+          this.form.get('policy.postalCode')?.disable();
+        } else {
+          this.form.get('policy.title')?.enable();
+          this.form.get('policy.firstName')?.enable();
+          this.form.get('policy.lastName')?.enable();
+          this.form.get('policy.email')?.enable();
+          this.form.get('policy.phone')?.enable();
+          this.form.get('policy.addressOne')?.enable();
+          this.form.get('policy.addressTwo')?.enable();
+          this.form.get('policy.city')?.enable();
+          this.form.get('policy.state')?.enable();
+          this.form.get('policy.country')?.enable();
+          this.form.get('policy.postalCode')?.enable();
+        }
+      });
 
-    this.form?.get('loss.anyWitnessOfLoss')?.valueChanges.subscribe((value) => {
+    this.form
+      ?.get('loss.areAuthoritiesNotified')
+      ?.valueChanges.subscribe(value => {
+        if (value === 'Yes') {
+          this.form.get('loss.authorityType')?.enable();
+          this.form.get('loss.authorityReportNumber')?.enable();
+          this.form.get('loss.authorityAdditionalInformation')?.enable();
+        } else {
+          this.form.get('loss.authorityType')?.disable();
+          this.form.get('loss.authorityReportNumber')?.disable();
+          this.form.get('loss.authorityAdditionalInformation')?.disable();
+        }
+      });
+
+    this.form?.get('loss.anyWitnessOfLoss')?.valueChanges.subscribe(value => {
       if (value === 'Yes') {
         this.addWitness();
       } else {
@@ -152,12 +156,14 @@ export class FormComponent {
       }
     });
 
-    this.form?.get('loss.lossLocation')?.valueChanges.subscribe((value) => {
+    this.form?.get('loss.lossLocation')?.valueChanges.subscribe(value => {
       if (value === 'SameAsReporter') {
         this.lossAddress.setValue(this.mapLossFields(this.form.value.reporter));
       } else if (value === 'SameAsInsured') {
-        if(this.form?.get('policy.contactSameAsReporter')?.value === true){
-          this.lossAddress.setValue(this.mapLossFields(this.form.value.reporter));
+        if (this.form?.get('policy.contactSameAsReporter')?.value === true) {
+          this.lossAddress.setValue(
+            this.mapLossFields(this.form.value.reporter)
+          );
         } else {
           this.lossAddress.setValue(this.mapLossFields(this.form.value.policy));
         }
@@ -166,19 +172,27 @@ export class FormComponent {
       }
     });
 
-    this.form?.get('claimant.claimantContact')?.valueChanges.subscribe((value) => {
-      if (value === 'SameAsReporter') {
-        this.claimants.at(0).setValue(this.mapClaimantFields(this.form.value.reporter));
-      } else if (value === 'SameAsInsured') {
-        if(this.form?.get('policy.contactSameAsReporter')?.value === true){
-          this.claimants.at(0).setValue(this.mapClaimantFields(this.form.value.reporter));
+    this.form
+      ?.get('claimant.claimantContact')
+      ?.valueChanges.subscribe(value => {
+        if (value === 'SameAsReporter') {
+          this.claimants
+            .at(0)
+            .setValue(this.mapClaimantFields(this.form.value.reporter));
+        } else if (value === 'SameAsInsured') {
+          if (this.form?.get('policy.contactSameAsReporter')?.value === true) {
+            this.claimants
+              .at(0)
+              .setValue(this.mapClaimantFields(this.form.value.reporter));
+          } else {
+            this.claimants
+              .at(0)
+              .setValue(this.mapClaimantFields(this.form.value.policy));
+          }
         } else {
-          this.claimants.at(0).setValue(this.mapClaimantFields(this.form.value.policy));
+          this.claimants.at(0).reset();
         }
-      } else {
-        this.claimants.at(0).reset();
-      }
-    });
+      });
   }
 
   // Helper method to map only the relevant fields
@@ -195,7 +209,7 @@ export class FormComponent {
       state: source.state,
       country: source.country,
       customCountry: source.customCountry,
-      postalCode: source.postalCode
+      postalCode: source.postalCode,
     };
   }
 
@@ -207,7 +221,7 @@ export class FormComponent {
       state: source.state,
       country: source.country,
       customCountry: source.customCountry,
-      postalCode: source.postalCode
+      postalCode: source.postalCode,
     };
   }
 
@@ -224,43 +238,47 @@ export class FormComponent {
   }
 
   addWitness(): void {
-    this.witnesses.push(this.formBuilder.group({
-      title: [''],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      phone: [''],
-      addressOne: [''],
-      addressTwo: [''],
-      city: [''],
-      state: [''],
-      country: ['United States'],
-      postalCode: ['']
-    }));
+    this.witnesses.push(
+      this.formBuilder.group({
+        title: [''],
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', Validators.required],
+        phone: [''],
+        addressOne: [''],
+        addressTwo: [''],
+        city: [''],
+        state: [''],
+        country: ['United States'],
+        postalCode: [''],
+      })
+    );
   }
 
   addClaimant(): void {
-    this.claimants.push(this.formBuilder.group({
-      title: [''],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      phone: [''],
-      addressOne: [''],
-      addressTwo: [''],
-      city: [''],
-      state: [''],
-      country: ['United States'],
-      postalCode: ['']
-    }));
+    this.claimants.push(
+      this.formBuilder.group({
+        title: [''],
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', Validators.required],
+        phone: [''],
+        addressOne: [''],
+        addressTwo: [''],
+        city: [''],
+        state: [''],
+        country: ['United States'],
+        postalCode: [''],
+      })
+    );
   }
 
   async resetForm() {
     this.form.reset();
-    this.form.get('claimant.claimantContact')?.setValue("");
-    this.form.get('loss.lossLocation')?.setValue("");
-    this.form.get('loss.areAuthoritiesNotified')?.setValue("No");
-    this.form.get('loss.anyWitnessOfLoss')?.setValue("Yes");
+    this.form.get('claimant.claimantContact')?.setValue('');
+    this.form.get('loss.lossLocation')?.setValue('');
+    this.form.get('loss.areAuthoritiesNotified')?.setValue('No');
+    this.form.get('loss.anyWitnessOfLoss')?.setValue('Yes');
   }
 
   onSubmit() {

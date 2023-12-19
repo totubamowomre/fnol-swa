@@ -11,11 +11,10 @@ export class FooterComponent implements OnInit {
   version = '...';
   isProduction = environment.production;
 
-  constructor() { }
+  constructor() {}
 
   async ngOnInit() {
     this.name = 'mrsi.portal.claims.fnol';
     this.version = '0.1.0';
   }
-
 }

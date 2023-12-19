@@ -8,7 +8,7 @@ describe('SessionService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule],
     });
     service = TestBed.inject(SessionService);
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000; // 10 seconds

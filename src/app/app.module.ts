@@ -49,10 +49,7 @@ import { EmailTooLargeDialogComponent } from './components/email-too-large-dialo
     SessionExpiredDialogComponent,
     SessionReminderDialogComponent,
   ],
-  providers: [
-    ApiService,
-    { provide: MAT_DATE_LOCALE, useValue: 'en-US' }
-  ],
+  providers: [ApiService, { provide: MAT_DATE_LOCALE, useValue: 'en-US' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {
