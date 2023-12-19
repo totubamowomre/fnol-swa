@@ -17,9 +17,24 @@ jobs:
     vmImage: ubuntu-latest
   variables:
   - group: Azure-Static-Web-Apps-victorious-pebble-0501c0f0f-variable-group
+  - name: npm_config_cache
+    value: $(Pipeline.Workspace)/.npm
   steps:
   - checkout: self
     submodules: true
+  - task: Npm@1
+    inputs:
+      command: 'custom'
+      workingDir: '.'
+      customCommand: 'config set cache $(npm_config_cache)'
+    displayName: 'NPM - Set cache location'
+  - task: Cache@2
+    inputs:
+      key: 'npm | "$(Agent.OS)" | package-lock.json'
+      path: '$(npm_config_cache)'
+      restoreKeys: |
+        npm | "$(Agent.OS)"
+    displayName: 'Cache NPM'
   - task: Npm@1
     inputs:
       command: 'custom'
@@ -30,23 +45,27 @@ jobs:
     inputs:
       command: 'ci'
       workingDir: '.'
-    displayName: 'NPM - CI Install Packages'
+    displayName: 'NPM - Install packages'
   - task: Npm@1
     inputs:
       command: 'custom'
       workingDir: '.'
-      customCommand: 'test'
-    continueOnError: true
+      customCommand: 'run test'
     displayName: 'NPM - Run unit tests'
   - task: PublishCodeCoverageResults@2
     inputs:
       summaryFileLocation: 'coverage/cobertura.xml'
       pathToSources: 'src'
-      failIfCoverageEmpty: true
     displayName: 'Publish code coverage'
+  - task: Npm@1
+    inputs:
+      command: 'custom'
+      workingDir: '.'
+      customCommand: 'run build'
+    displayName: 'NPM - Run build'
   - task: AzureStaticWebApp@0
     inputs:
-      azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN_VICTORIOUS_PEBBLE_0501C0F0F)
-      app_location: "/"
-      api_location: ""
-      output_location: "dist/angular-basic"
+      app_location: 'dist/angular-basic'
+      skip_app_build: true
+      skip_api_build: true
+      azure_static_web_apps_api_token: '$(AZURE_STATIC_WEB_APPS_API_TOKEN_VICTORIOUS_PEBBLE_0501C0F0F)'
