@@ -4,19 +4,21 @@ pr:
   branches:
     include:
       - main
+      - develop
+
 trigger:
   branches:
     include:
       - main
+      - develop
 
 jobs:
-- job: build_and_deploy_job
-  displayName: Build and Deploy Job
+- job: Build_and_Test
+  displayName: Build and Test
   condition: or(eq(variables['Build.Reason'], 'Manual'),or(eq(variables['Build.Reason'], 'PullRequest'),eq(variables['Build.Reason'], 'IndividualCI')))
   pool:
     vmImage: ubuntu-latest
   variables:
-  - group: Azure-Static-Web-Apps-victorious-pebble-0501c0f0f-variable-group
   - name: npm_config_cache
     value: $(Pipeline.Workspace)/.npm
   steps:
@@ -47,12 +49,21 @@ jobs:
       workingDir: '.'
     displayName: 'NPM - Install packages'
   - task: Npm@1
+    condition: or(eq(variables['Build.Reason'], 'PullRequest'), ne(variables['Build.SourceBranch'], 'refs/heads/main'))
+    inputs:
+      command: 'custom'
+      workingDir: '.'
+      customCommand: 'run style:check'
+    displayName: 'NPM - Run style check'
+  - task: Npm@1
+    condition: or(eq(variables['Build.Reason'], 'PullRequest'), ne(variables['Build.SourceBranch'], 'refs/heads/main'))
     inputs:
       command: 'custom'
       workingDir: '.'
       customCommand: 'run test'
     displayName: 'NPM - Run unit tests'
   - task: PublishCodeCoverageResults@2
+    condition: or(eq(variables['Build.Reason'], 'PullRequest'), ne(variables['Build.SourceBranch'], 'refs/heads/main'))
     inputs:
       summaryFileLocation: 'coverage/cobertura.xml'
       pathToSources: 'src'
@@ -63,7 +74,19 @@ jobs:
       workingDir: '.'
       customCommand: 'run build'
     displayName: 'NPM - Run build'
+
+- job: Deploy
+  displayName: 'Deploy'
+  dependsOn: Build_and_Test
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+  pool:
+    vmImage: ubuntu-latest
+  variables:
+  - group: Azure-Static-Web-Apps-victorious-pebble-0501c0f0f-variable-group
+  steps:
+  - checkout: self
   - task: AzureStaticWebApp@0
+    condition: and(eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables['Build.Reason'], 'PullRequest'))
     inputs:
       app_location: 'dist/angular-basic'
       skip_app_build: true
