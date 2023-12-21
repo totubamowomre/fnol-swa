@@ -27,4 +27,26 @@ describe('EmailTooLargeDialogComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should copy text to clipboard and reset icon after 2 seconds', done => {
+    const clipboardWriteTextSpy = spyOn(
+      navigator.clipboard,
+      'writeText'
+    ).and.returnValue(Promise.resolve());
+    component.copyTextToClipboard();
+
+    expect(clipboardWriteTextSpy).toHaveBeenCalledWith(
+      component.data.emailBody
+    );
+
+    setTimeout(() => {
+      expect(component.copied).toBeTruthy();
+    }, 100);
+
+    setTimeout(() => {
+      fixture.detectChanges();
+      expect(component.copied).toBeFalsy();
+      done();
+    }, 2001);
+  });
 });
