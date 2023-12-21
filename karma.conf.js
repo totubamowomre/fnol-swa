@@ -27,6 +27,9 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, './coverage'),
       reports: ['html', 'lcovonly', 'text-summary', 'cobertura'],
       fixWebpackSourcePaths: true,
+      exclude: [
+        'src/polyfills.ts'
+      ],
       'report-config': {
         cobertura: {
           file: 'cobertura.xml'

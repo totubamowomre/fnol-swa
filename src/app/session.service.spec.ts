@@ -36,4 +36,25 @@ describe('SessionService', () => {
     await service.startSession();
     expect(service.currentSessionReminder).toBeTruthy();
   });
+
+  it('should get session data from sessionStorage', () => {
+    const sessionDataMock = { key: 'value' };
+    const getItemSpy = spyOn(sessionStorage, 'getItem').and.returnValue(
+      JSON.stringify(sessionDataMock)
+    );
+
+    const result = SessionService.getSessionData();
+
+    expect(getItemSpy).toHaveBeenCalledWith('clminsfnoldata-dev-sessionData');
+    expect(result).toEqual(sessionDataMock);
+  });
+
+  it('should return null if session data is not present in sessionStorage', () => {
+    const getItemSpy = spyOn(sessionStorage, 'getItem').and.returnValue(null);
+
+    const result = SessionService.getSessionData();
+
+    expect(getItemSpy).toHaveBeenCalledWith('clminsfnoldata-dev-sessionData');
+    expect(result).toBeNull();
+  });
 });

@@ -12,6 +12,8 @@ mat-card {
 }
 
 .button-container {
+    display: flex;
+    justify-content: space-between;
     margin: 0 20px;
 }
 
@@ -20,6 +22,7 @@ mat-card {
 }
 
 .button-align{
+    text-align: center;
     margin-left: 60px;
     margin-right: 20px;
 }
@@ -48,6 +51,10 @@ mat-radio-group {
     }
 }
 
+.flex-spacer {
+    flex: 1 1 auto;
+}
+
 .any-witness-section,
 .witness-section,
 .authority-notified-section,
@@ -66,7 +73,8 @@ mat-radio-group {
     justify-content: start;
     padding-bottom: 20px;
 }
-.warning-text{
-    padding-left: 60px;
+.warning-text {
+    text-align: center;
     font-size: medium;
+    padding: 20px;
 }
