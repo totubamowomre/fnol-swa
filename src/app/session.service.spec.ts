@@ -1,7 +1,9 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { SessionService } from './session.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 describe('SessionService', () => {
   let service: SessionService;
@@ -45,7 +47,7 @@ describe('SessionService', () => {
 
     const result = SessionService.getSessionData();
 
-    expect(getItemSpy).toHaveBeenCalledWith('clminsfnoldata-dev-sessionData');
+    expect(getItemSpy).toHaveBeenCalledWith('clmsinsfnoldata-dev-sessionData');
     expect(result).toEqual(sessionDataMock);
   });
 
@@ -54,7 +56,43 @@ describe('SessionService', () => {
 
     const result = SessionService.getSessionData();
 
-    expect(getItemSpy).toHaveBeenCalledWith('clminsfnoldata-dev-sessionData');
+    expect(getItemSpy).toHaveBeenCalledWith('clmsinsfnoldata-dev-sessionData');
     expect(result).toBeNull();
+  });
+
+  it('should reset the timer correctly', fakeAsync(() => {
+    const sessionReminderNextSpy = spyOn(service['sessionReminder'], 'next');
+    const clearAllSpy = spyOn(SessionService, 'clearAll');
+    const consoleLogSpy = spyOn(console, 'log');
+
+    service.resetTimer();
+
+    tick(environment.session.timeOut * 60 * 1000 * 0.7);
+
+    expect(sessionReminderNextSpy).toHaveBeenCalledWith(true);
+
+    tick(environment.session.timeOut * 60 * 1000 * 0.3);
+
+    expect(clearAllSpy).toHaveBeenCalled();
+    expect(consoleLogSpy).toHaveBeenCalledWith('Session ended');
+  }));
+
+  it('should unsubscribe from subscriptions on ngOnDestroy', () => {
+    const mockSessionSubscription = new Subscription();
+    const mockSessionReminderSubscription = new Subscription();
+
+    service['sessionSubscription'] = mockSessionSubscription;
+    service['sessionReminderSubscription'] = mockSessionReminderSubscription;
+
+    const unsubscribeSpy1 = spyOn(mockSessionSubscription, 'unsubscribe');
+    const unsubscribeSpy2 = spyOn(
+      mockSessionReminderSubscription,
+      'unsubscribe'
+    );
+
+    service.ngOnDestroy();
+
+    expect(unsubscribeSpy1).toHaveBeenCalled();
+    expect(unsubscribeSpy2).toHaveBeenCalled();
   });
 });

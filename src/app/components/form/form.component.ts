@@ -37,7 +37,7 @@ export class FormComponent {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        phone: ['', Validators.pattern(/^[0-9]$/)],
+        phone: ['', Validators.pattern(/^[0-9]/)],
         addressOne: [''],
         addressTwo: [''],
         city: [''],
@@ -66,7 +66,7 @@ export class FormComponent {
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
-            phone: ['', Validators.pattern(/^[0-9]$/)],
+            phone: ['', Validators.pattern(/^[0-9]/)],
             addressOne: [''],
             addressTwo: [''],
             city: [''],
@@ -250,6 +250,7 @@ export class FormComponent {
         city: [''],
         state: [''],
         country: ['United States'],
+        customCountry: [''],
         postalCode: [''],
       })
     );
@@ -268,6 +269,7 @@ export class FormComponent {
         city: [''],
         state: [''],
         country: ['United States'],
+        customCountry: [''],
         postalCode: [''],
       })
     );

@@ -91,6 +91,24 @@ export class SessionService implements OnDestroy {
     });
   }
 
+  resetTimer(): void {
+    this.sessionSubscription?.unsubscribe();
+    this.sessionReminderSubscription?.unsubscribe();
+
+    const timeOutMinutes = environment.session.timeOut * 60 * 1000;
+    const reminderTimeOut = timeOutMinutes * 0.7;
+
+    this.sessionReminderSubscription = timer(reminderTimeOut).subscribe(() => {
+      this.sessionReminder.next(true);
+    });
+
+    this.sessionSubscription = timer(timeOutMinutes).subscribe(() => {
+      this.setSessionState(false);
+      SessionService.clearAll();
+      console.log('Session ended');
+    });
+  }
+
   ngOnDestroy(): void {
     this.sessionSubscription?.unsubscribe();
     this.sessionReminderSubscription?.unsubscribe();

@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
-  claimsMailbox: 'clmins@munichre.com',
+  claimsMailbox: 'clmsins@munichre.com',
   session: {
-    storagePrefix: 'clminsfnoldata',
+    storagePrefix: 'clmsinsfnoldata',
     timeOut: 10,
   },
   apiUrl: '',

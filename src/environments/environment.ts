@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  claimsMailbox: 'clmins-dev@munichre.com',
+  claimsMailbox: 'clmsins-dev@munichre.com',
   session: {
-    storagePrefix: 'clminsfnoldata-dev',
+    storagePrefix: 'clmsinsfnoldata-dev',
     timeOut: 10,
   },
   apiUrl: '',
