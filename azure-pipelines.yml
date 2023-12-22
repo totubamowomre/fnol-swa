@@ -4,14 +4,11 @@ pr:
   branches:
     include:
       - main
-      - develop
 
 trigger:
   branches:
     include:
       - main
-      - develop
-
 jobs:
 - job: Build_and_Test
   displayName: Build and Test
