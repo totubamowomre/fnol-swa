@@ -27,6 +27,26 @@ mat-card {
     margin-right: 20px;
 }
 
+.remove-button {
+    color: red;
+    background-color: rgba(246, 240, 240, 0.936);
+    transition: background-color 0.3s, color 0.3s;
+}
+  
+.remove-button:hover {
+    background-color: rgb(226, 216, 216);
+    color: red;
+}
+
+.big-icon {
+    font-size: 24px;
+}
+
+.close-button {
+    display: flex;
+    justify-content: end;
+}
+
 .hidden {
     display: none;
 }

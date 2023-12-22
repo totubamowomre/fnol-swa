@@ -283,6 +283,20 @@ export class FormComponent {
     this.form.get('loss.anyWitnessOfLoss')?.setValue('Yes');
   }
 
+  removeClaimant(index: number) {
+    const claimantsArray = this.form.get('claimant.claimants') as FormArray;
+    if (index >= 1 && index < claimantsArray.length) {
+      claimantsArray.removeAt(index);
+    }
+  }
+
+  removeWitness(index: number) {
+    const witnessesArray = this.form.get('loss.witnesses') as FormArray;
+    if (index >= 1 && index < witnessesArray.length) {
+      witnessesArray.removeAt(index);
+    }
+  }
+
   onSubmit() {
     if (this.form.valid) {
       this.isLoading = true;

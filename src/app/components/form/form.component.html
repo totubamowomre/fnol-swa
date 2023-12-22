@@ -468,6 +468,17 @@
             *ngFor="let witness of witnesses.controls; let i = index"
             [formGroupName]="i"
           >
+            <div class="=row close-button">
+              <button
+                *ngIf="i > 0"
+                mat-icon-button
+                matSuffix
+                class="remove-button"
+                (click)="removeWitness(i)"
+              >
+                <mat-icon class="big-icon">close</mat-icon>
+              </button>
+            </div>
             <div class="row">
               <mat-form-field class="col-md-3 offset-md-3">
                 <mat-label>Title</mat-label>
@@ -723,6 +734,17 @@
           *ngFor="let claimant of claimants.controls; let i = index"
           [formGroupName]="i"
         >
+          <div class="row close-button">
+            <button
+              *ngIf="i > 0"
+              mat-icon-button
+              matSuffix
+              class="remove-button"
+              (click)="removeClaimant(i)"
+            >
+              <mat-icon class="big-icon">close</mat-icon>
+            </button>
+          </div>
           <div class="row">
             <mat-form-field class="col-md-4">
               <mat-label>Title</mat-label>

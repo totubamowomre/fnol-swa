@@ -27,7 +27,7 @@ export class ConfirmationPageComponent implements OnInit {
     if (!this.fnolId) {
       this.router.navigate(['']);
     }
-    if (this.data.length <= 2000) {
+    if (this.data.length < 2000) {
       this.hideButton = true;
     }
   }
